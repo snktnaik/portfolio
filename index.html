@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanket Naik — Product Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #111110;
+    --muted: #888884;
+    --rule: #E5E4E0;
+    --accent: #111110;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 2.5rem;
+    height: 52px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 400;
+    color: var(--muted); text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    font-size: 13px; font-weight: 500;
+    color: var(--text); text-decoration: none;
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 1px;
+    transition: opacity .2s;
+  }
+  .nav-cta:hover { opacity: 0.5; }
+
+  /* HERO */
+  .hero {
+    padding: 140px 2.5rem 80px;
+    max-width: 960px;
+  }
+
+  .hero-label {
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 2.5rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-label::before { content: ''; width: 20px; height: 1px; background: var(--muted); }
+
+  .hero-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(44px, 7vw, 88px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--text);
+    margin-bottom: 2rem;
+    max-width: 800px;
+  }
+  .hero-headline em { font-style: italic; color: var(--muted); }
+
+  .hero-sub {
+    font-size: 16px; line-height: 1.8;
+    color: var(--muted); max-width: 480px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-links { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+  .link-primary {
+    font-size: 14px; font-weight: 500; color: var(--text);
+    text-decoration: none; border-bottom: 1.5px solid var(--text);
+    padding-bottom: 1px; transition: opacity .2s;
+  }
+  .link-primary:hover { opacity: 0.5; }
+  .link-secondary {
+    font-size: 14px; color: var(--muted); text-decoration: none;
+    transition: color .2s;
+  }
+  .link-secondary:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section {
+    border-top: 1px solid var(--rule);
+    padding: 5rem 2.5rem;
+    max-width: 960px;
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--muted); padding-top: 4px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--text);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 3rem;
+  }
+
+  .about-body { font-size: 15px; line-height: 1.85; color: var(--muted); }
+  .about-body p + p { margin-top: 1.2rem; }
+  .about-body strong { color: var(--text); font-weight: 500; }
+
+  /* WORK */
+  .work-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 80px;
+    gap: 3rem;
+    align-items: start;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    transition: opacity .2s;
+    cursor: pointer;
+  }
+  .work-row:first-child { border-top: 1px solid var(--rule); }
+  .work-row:hover { opacity: 0.5; }
+
+  .work-cat { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
+  .work-title { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -.5px; color: var(--text); margin-bottom: 6px; }
+  .work-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .work-arr { font-size: 18px; color: var(--muted); text-align: right; padding-top: 3px; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 3rem;
+  }
+
+  .skill-group { margin-bottom: 2rem; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-group-lbl {
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .skill-list {
+    font-size: 15px; color: var(--text); line-height: 1.8;
+  }
+
+  /* EXPERIENCE */
+  .exp-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 3rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .exp-row:first-child { border-top: 1px solid var(--rule); }
+
+  .exp-yr { font-size: 13px; color: var(--muted); padding-top: 2px; }
+  .exp-role { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .exp-co { font-size: 14px; color: var(--muted); }
+  .exp-tag {
+    display: inline-block; font-size: 10px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted); border: 1px solid var(--rule);
+    padding: 2px 8px; border-radius: 100px; margin-top: 6px;
+  }
+
+  /* CONTACT */
+  .contact-body {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-right h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px,5vw,60px);
+    line-height: 1.1; letter-spacing: -1.5px;
+    color: var(--text); margin-bottom: 1.5rem;
+  }
+  .contact-right h2 em { font-style: italic; color: var(--muted); }
+
+  .contact-right p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; max-width: 420px; }
+
+  .contact-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 1.5rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    max-width: none;
+  }
+  .f-l { font-size: 13px; color: var(--muted); }
+  .f-r { font-size: 13px; color: var(--muted); }
+
+  /* Fade */
+  .fu { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+  .fu.vis { opacity: 1; transform: translateY(0); }
+
+  @media(max-width: 680px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 1.5rem 60px; }
+    section { padding: 3.5rem 1.5rem; max-width: none; }
+    .section-head,
+    .about-grid,
+    .skills-grid,
+    .contact-body { grid-template-columns: 1fr; gap: 1rem; }
+    .work-row { grid-template-columns: 1fr; gap: 0.75rem; }
+    .work-arr { display: none; }
+    .exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { padding: 1.5rem; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-name">Sanket Naik</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact</a>
+</nav>
+
+<div class="hero fu">
+  <div class="hero-label">Product Designer · Bengaluru</div>
+  <h1 class="hero-headline">
+    Designing products that feel <em>inevitable.</em>
+  </h1>
+  <p class="hero-sub">
+    M.Des from IIT Delhi. Trained in engineering, refined through industrial design, now building digital products at TCS.
+  </p>
+  <div class="hero-links">
+    <a href="#work" class="link-primary">See my work</a>
+    <a href="#contact" class="link-secondary">Get in touch →</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head fu">
+    <div class="section-num">01 / About</div>
+    <div class="section-title">A designer shaped<br>by making things.</div>
+  </div>
+  <div class="about-grid fu">
+    <div></div>
+    <div class="about-body">
+      <p>I come from <strong>mechanical engineering and industrial design</strong> — which means I'm equally comfortable thinking about manufacturing constraints and mapping user journeys. That breadth shapes how I approach every problem.</p>
+      <p>After an <strong>M.Des from IIT Delhi</strong>, where my thesis focused on safety-first design for elderly washroom environments, I've worked across agencies, a co-founded venture, and enterprise product teams. Today I design UX systems at TCS in Bengaluru.</p>
+      <p>Originally from <strong>Goa</strong>. Interested in football, guitar, travel, and cinema when not pushing pixels.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-head fu">
+    <div class="section-num">02 / Work</div>
+    <div class="section-title">Selected<br>case studies.</div>
+  </div>
+  <div class="fu">
+    <div class="work-row">
+      <div class="work-cat">Product Design</div>
+      <div>
+        <div class="work-title">WiNK A/C Remote Redesign</div>
+        <div class="work-desc">Simplifying smart air conditioner controls — balancing everyday simplicity with advanced features for power users.</div>
+      </div>
+      <div class="work-arr">↗</div>
+    </div>
+    <div class="work-row">
+      <div class="work-cat">Research + Design</div>
+      <div>
+        <div class="work-title">Elderly Washroom Safety</div>
+        <div class="work-desc">M.Des thesis — ethnographic research leading to an inclusive, safety-first redesign of washroom environments for ageing users.</div>
+      </div>
+      <div class="work-arr">↗</div>
+    </div>
+    <div class="work-row" style="opacity:.4; pointer-events:none;">
+      <div class="work-cat">In progress</div>
+      <div>
+        <div class="work-title">More soon</div>
+        <div class="work-desc">Additional case studies from TCS in preparation. Reach out for a walkthrough.</div>
+      </div>
+      <div class="work-arr">—</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-head fu">
+    <div class="section-num">03 / Skills</div>
+    <div class="section-title">Toolkit.</div>
+  </div>
+  <div class="skills-grid fu">
+    <div></div>
+    <div>
+      <div class="skill-group">
+        <div class="skill-group-lbl">Design</div>
+        <div class="skill-list">Figma · Adobe XD · Prototyping · Design Systems · Interaction Design · Visual Design</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-lbl">Research</div>
+        <div class="skill-list">User Interviews · Usability Testing · Contextual Enquiry · Information Architecture · Journey Mapping</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-lbl">Engineering</div>
+        <div class="skill-list">SolidWorks · Industrial Design · Mechanical Engineering · DFM</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-lbl">Emerging</div>
+        <div class="skill-list">HTML · CSS · AI Tools · Cursor · Prompt Engineering</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-head fu">
+    <div class="section-num">04 / Experience</div>
+    <div class="section-title">Where I've been.</div>
+  </div>
+  <div class="fu">
+    <div class="exp-row">
+      <div class="exp-yr">2023 – Present</div>
+      <div>
+        <div class="exp-role">Product Designer</div>
+        <div class="exp-co">Tata Consultancy Services (TCS) · Bengaluru</div>
+        <span class="exp-tag">Current</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-yr">2021 – 2023</div>
+      <div>
+        <div class="exp-role">M.Des — Industrial Design</div>
+        <div class="exp-co">IIT Delhi</div>
+        <span class="exp-tag">Education</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-yr">2020 – 2021</div>
+      <div>
+        <div class="exp-role">UI/UX Designer</div>
+        <div class="exp-co">Desmania Design</div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-yr">2019 – 2020</div>
+      <div>
+        <div class="exp-role">Design Engineer</div>
+        <div class="exp-co">Pentair</div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-yr">2018 – 2019</div>
+      <div>
+        <div class="exp-role">Co-Founder</div>
+        <div class="exp-co">Thinkaprint</div>
+        <span class="exp-tag">Venture</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-body fu">
+    <div class="section-num" style="padding-top:4px">05 / Contact</div>
+    <div class="contact-right">
+      <h2>Let's work<br><em>together.</em></h2>
+      <p>Open to senior product design roles, freelance projects, and conversations about craft. If what you're building sounds interesting, I'd like to hear about it.</p>
+      <div class="contact-actions">
+        <a href="mailto:sanket@example.com" class="link-primary">sanket@example.com</a>
+        <a href="https://linkedin.com/in/sanketnaik" target="_blank" class="link-secondary">LinkedIn ↗</a>
+        <a href="#" class="link-secondary">CV ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-l">Sanket Subhash Naik · Product Designer</div>
+  <div class="f-r">Goa-born · Bengaluru-based · 2025</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('vis'), i * 60);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
