@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanket Naik — Brutalist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f6f4;--ink:#000;--muted:#555;--accent:#d6f23a;--accent-ink:#000;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"Space Mono",monospace;
+    --maxw:1280px;--b:2px solid #000;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono)}
+  .hl{background:var(--accent);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+  header.nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:var(--b)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.02em;display:flex;align-items:center;gap:9px}
+  .brand .sq{width:13px;height:13px;background:var(--ink)}
+  nav ul{display:flex;list-style:none}
+  nav a{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;padding:6px 16px;border-left:var(--b);transition:.15s}
+  nav a:hover{background:var(--ink);color:var(--bg)}
+  nav a.cta{background:var(--accent)}
+  nav a.cta:hover{background:var(--ink);color:var(--accent)}
+  .burger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer}
+  .burger span{width:24px;height:2px;background:var(--ink)}
+
+  /* hero */
+  .hero{border-bottom:var(--b)}
+  .hero-top{padding:50px 0 30px;display:grid;grid-template-columns:1fr auto;gap:26px;align-items:end}
+  .hero h1{font-size:clamp(44px,9vw,128px);line-height:.92;letter-spacing:-.045em;font-weight:700;text-transform:uppercase}
+  .hero .avail{font-family:var(--mono);font-size:12px;text-transform:uppercase;text-align:right;line-height:1.8;border:var(--b);padding:12px 16px;background:var(--accent);white-space:nowrap}
+  .hero-strip{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-top:var(--b)}
+  .hero-strip .c{padding:20px 22px;border-left:var(--b)}
+  .hero-strip .c:first-child{border-left:none}
+  .hero-strip .k{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .hero-strip .v{font-size:17px;font-weight:500;line-height:1.3}
+  .hero-strip .lede .v{font-size:18px;font-weight:400}
+  @media(max-width:760px){.hero-strip{grid-template-columns:1fr 1fr}.hero-strip .c:first-child{grid-column:1/-1;border-left:none;border-bottom:var(--b)}.hero-strip .c:nth-child(2){border-left:none}}
+
+  /* section */
+  .sec{border-bottom:var(--b)}
+  .sec-head{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:var(--b)}
+  .sec-head .idx{font-family:var(--mono);font-weight:700;font-size:13px;background:var(--ink);color:var(--bg);padding:3px 9px}
+  .sec-head h2{font-size:18px;text-transform:uppercase;letter-spacing:-.01em;font-weight:700}
+  .sec-head .meta{margin-left:auto;font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted)}
+
+  /* work */
+  .work-grid{display:grid;grid-template-columns:1fr 1fr}
+  .proj{border-bottom:var(--b);border-right:var(--b);cursor:pointer;background:var(--bg);transition:background .15s;position:relative}
+  .proj:nth-child(2n){border-right:none}
+  .proj:hover{background:var(--accent)}
+  .proj .cover{aspect-ratio:16/9;margin:16px 16px 0;border:var(--b);background:
+    repeating-linear-gradient(135deg,#eee,#eee 10px,#e2e2e0 10px,#e2e2e0 20px);
+    display:grid;place-items:center;position:relative}
+  .proj .cover .ph{font-family:var(--mono);font-size:10px;text-transform:uppercase;background:var(--bg);border:var(--b);padding:4px 10px}
+  .proj .info{padding:18px 16px 20px}
+  .proj .no{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .proj h3{font-size:26px;font-weight:700;text-transform:uppercase;letter-spacing:-.02em;margin-top:4px;line-height:1.04;display:flex;justify-content:space-between;gap:12px;align-items:center}
+  .proj h3 .arr{font-family:var(--mono)}
+  .proj .cat{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);margin-top:10px}
+  .proj p{font-size:14.5px;color:#333;margin-top:10px;max-width:42ch}
+
+  /* about */
+  .pad{padding:54px 0}
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:50px;align-items:start}
+  .about-grid .big{font-size:clamp(26px,3.6vw,42px);line-height:1.12;font-weight:700;text-transform:uppercase;letter-spacing:-.02em}
+  .about-body{margin-top:22px}
+  .about-body p{color:#333;max-width:60ch;margin-bottom:14px}
+  .about-side .ln{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:var(--b);font-family:var(--mono);font-size:13px;text-transform:uppercase}
+  .about-side .ln:first-child{border-top:var(--b)}
+  .about-side .ln span{color:var(--muted)}
+
+  /* skills */
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr;border-top:var(--b);border-left:var(--b)}
+  .skills-grid>div{padding:24px;border-right:var(--b);border-bottom:var(--b)}
+  .skills-grid h4{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+  .sk{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-top:var(--b);font-size:18px;font-weight:500;text-transform:uppercase}
+  .sk .n{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+  /* experience */
+  .exp{border-top:var(--b)}
+  .er{display:grid;grid-template-columns:130px 1fr 1fr 120px;gap:18px;padding:18px 14px;border-bottom:var(--b);align-items:baseline;transition:.15s}
+  .er:hover{background:var(--accent)}
+  .er .when{font-family:var(--mono);font-size:12px;text-transform:uppercase}
+  .er .role{font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:-.01em}
+  .er .org{color:#333}
+  .er .loc{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted);text-align:right}
+  .pub{border:var(--b);margin-top:36px;padding:24px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:var(--accent)}
+  .pub .num{font-family:var(--mono);font-weight:700;font-size:30px;border:var(--b);width:54px;height:54px;display:grid;place-items:center;background:var(--bg)}
+  .pub .t{font-size:18px;font-weight:500;line-height:1.35}
+  .pub .c{font-family:var(--mono);font-size:11px;text-transform:uppercase;margin-top:8px;color:#222}
+  @media(max-width:760px){.er{grid-template-columns:1fr;gap:3px}.er .loc{text-align:left}}
+
+  /* contact */
+  .contact{padding:64px 0}
+  .contact h2{font-size:clamp(44px,10vw,150px);line-height:.9;letter-spacing:-.05em;font-weight:700;text-transform:uppercase}
+  .contact h2 .hl{padding:0 .08em}
+  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:var(--b);border-left:var(--b);margin-top:44px}
+  .contact-grid a{padding:22px 18px;border-right:var(--b);border-bottom:var(--b);transition:.15s}
+  .contact-grid a:hover{background:var(--ink);color:var(--bg)}
+  .contact-grid .k{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+  .contact-grid a:hover .k{color:var(--accent)}
+  .contact-grid .v{font-size:15px;word-break:break-word;font-weight:500}
+  footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:20px 0;font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:760px){.contact-grid{grid-template-columns:1fr 1fr}}
+
+  @media(max-width:760px){
+    nav ul{display:none}.burger{display:flex}
+    .hero-top{grid-template-columns:1fr}.hero .avail{justify-self:start}
+    .work-grid{grid-template-columns:1fr}.proj{border-right:none}
+    .about-grid,.skills-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><span class="sq"></span>Sanket Naik</a>
+    <nav><ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">CV</a></li>
+      <li><a href="#contact" class="cta">Contact</a></li>
+    </ul></nav>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <h1>Sanket<br>Naik<span class="hl">.</span></h1>
+        <div class="avail">● Available<br>for new roles<br>Bengaluru, IN</div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="hero-strip">
+        <div class="c lede"><div class="k">Who</div><div class="v">UI/UX designer &amp; researcher building <span class="hl">clarity</span> into complex software.</div></div>
+        <div class="c"><div class="k">Now</div><div class="v">TCS</div></div>
+        <div class="c"><div class="k">Degree</div><div class="v">M.Des, IIT Delhi</div></div>
+        <div class="c"><div class="k">Exp</div><div class="v">3+ yrs</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">01</span><h2>Selected Work</h2><span class="meta">06 / 2016—26</span></div>
+    </div>
+    <div class="wrap" style="padding:0">
+      <div class="work-grid">
+        <article class="proj"><div class="cover"><span class="ph">cover 16:9</span></div><div class="info"><span class="no">01</span><h3>Enterprise Platform UX <span class="arr">↗</span></h3><div class="cat">Product Design / TCS / 2022—Now</div><p>Designing and shipping interfaces for enterprise software used across large-scale operations.</p></div></article>
+        <article class="proj"><div class="cover"><span class="ph">cover 16:9</span></div><div class="info"><span class="no">02</span><h3>Accessible Sanitation <span class="arr">↗</span></h3><div class="cat">UX Research / Published / 2024</div><p>Co-authored study on whether India's accessible-toilet standards are evidence-based. 22nd IEA Congress.</p></div></article>
+        <article class="proj"><div class="cover"><span class="ph">cover 16:9</span></div><div class="info"><span class="no">03</span><h3>Thinkaprint <span class="arr">↗</span></h3><div class="cat">Co-founder / Product / 2017—20</div><p>Co-founded a 3D-printing venture in Goa — product, brand and customer experience from zero.</p></div></article>
+        <article class="proj"><div class="cover"><span class="ph">cover 16:9</span></div><div class="info"><span class="no">04</span><h3>Desmania <span class="arr">↗</span></h3><div class="cat">Industrial Design / 2021</div><p>Industrial design exploration during the M.Des programme at IIT Delhi.</p></div></article>
+        <article class="proj"><div class="cover"><span class="ph">cover 16:9</span></div><div class="info"><span class="no">05</span><h3>Scrap 3D Printer <span class="arr">↗</span></h3><div class="cat">Fabrication / Press / 2016</div><p>Built a working 3D printer from scrap materials — featured in The Goan.</p></div></article>
+        <article class="proj"><div class="cover"><span class="ph">cover 16:9</span></div><div class="info"><span class="no">06</span><h3>M.Des Thesis <span class="arr">↗</span></h3><div class="cat">Design Research / IIT Delhi / 2022</div><p>Master's research applying structured design methods to a real-world problem space.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">02</span><h2>About</h2></div>
+      <div class="pad">
+        <div class="about-grid">
+          <div>
+            <div class="big">A designer between <span class="hl">research</span> and <span class="hl">pixels</span>.</div>
+            <div class="about-body">
+              <p>My path runs from mechanical engineering in Goa, through a master's in Industrial Design at IIT Delhi, to product and UX design at TCS. Along the way I co-founded a 3D-printing startup and published research on accessible design.</p>
+              <p>I bring the discipline of structured research and the instinct of someone who has shipped products and run a business — with a bias for clarity and evidence.</p>
+            </div>
+          </div>
+          <div class="about-side">
+            <div class="ln">Based <span>Bengaluru, IN</span></div>
+            <div class="ln">Degree <span>M.Des, IIT-D</span></div>
+            <div class="ln">Prior <span>B.E. Mech</span></div>
+            <div class="ln">Founded <span>Thinkaprint</span></div>
+            <div class="ln">Published <span>IEA 2024</span></div>
+            <div class="ln">Status <span>Open to work</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="skills">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">03</span><h2>Skills &amp; Tools</h2></div>
+      <div class="pad">
+        <div class="skills-grid">
+          <div><h4>// Capabilities</h4><div class="sk">UX Research <span class="n">01</span></div><div class="sk">Product Design <span class="n">02</span></div><div class="sk">Design Systems <span class="n">03</span></div><div class="sk">Prototyping <span class="n">04</span></div><div class="sk">Usability Testing <span class="n">05</span></div></div>
+          <div><h4>// Tools</h4><div class="sk">Figma <span class="n">01</span></div><div class="sk">Adobe XD <span class="n">02</span></div><div class="sk">Illustrator <span class="n">03</span></div><div class="sk">Photoshop <span class="n">04</span></div><div class="sk">AI in Design <span class="n">05</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="experience">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">04</span><h2>Curriculum Vitae</h2></div>
+      <div class="pad">
+        <div class="exp">
+          <div class="er"><div class="when">2022 — NOW</div><div class="role">UI/UX Designer</div><div class="org">TCS</div><div class="loc">Bengaluru</div></div>
+          <div class="er"><div class="when">2020 — 2022</div><div class="role">M.Des, Ind. Design</div><div class="org">IIT Delhi · CGPA 8.1</div><div class="loc">New Delhi</div></div>
+          <div class="er"><div class="when">2021</div><div class="role">Design Intern</div><div class="org">Desmania Design</div><div class="loc">Manesar</div></div>
+          <div class="er"><div class="when">2017 — 2020</div><div class="role">Co-founder</div><div class="org">Thinkaprint</div><div class="loc">Goa</div></div>
+          <div class="er"><div class="when">2015</div><div class="role">Apprentice Engineer</div><div class="org">Pentair Water Pvt Ltd</div><div class="loc">Goa</div></div>
+          <div class="er"><div class="when">2010 — 2014</div><div class="role">B.E., Mechanical</div><div class="org">Goa College of Engineering</div><div class="loc">Goa</div></div>
+        </div>
+        <div class="pub"><div class="num">P</div><div><div class="t">“Are Guidelines and Standards for Design of Accessible Toilets in India Evidence-Based?”</div><div class="c">Co-Author · 22nd IEA Congress, Vol. 5 · IEA 2024</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Let's<br>work <span class="hl">together.</span></h2>
+      <div class="contact-grid">
+        <a href="mailto:sanketmdes20@gmail.com"><div class="k">Email</div><div class="v">sanketmdes20@gmail.com</div></a>
+        <a href="tel:7709787457"><div class="k">Phone</div><div class="v">+91 77097 87457</div></a>
+        <a href="https://www.linkedin.com/in/sanket-naik-81902997" target="_blank" rel="noopener"><div class="k">LinkedIn</div><div class="v">/sanket-naik</div></a>
+        <a href="https://www.behance.net/snktnaik41" target="_blank" rel="noopener"><div class="k">Behance</div><div class="v">/snktnaik41</div></a>
+      </div>
+      <footer><span>Sanket Subhash Naik</span><span>© 2026 / Bengaluru, India</span></footer>
+    </div>
+  </section>
+</main>
+<script>
+  (function(){const b=document.querySelector('.burger');if(b)b.addEventListener('click',()=>document.body.classList.toggle('menu-open'));})();
+</script>
+</body>
+</html>

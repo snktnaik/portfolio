@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editorial Noir — Colour Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f2f1ee;--card:#fff;--ink:#0b0b0c;--muted:#76767a;--faint:#a7a7ab;--line:#e0dfdb;
+    --didone:"Bodoni Moda",Georgia,serif;--mono:"Space Mono",monospace;--sans:"Helvetica Neue",Helvetica,Arial,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+
+  .top{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--ink)}
+  .top .id{font-family:var(--didone);font-size:19px;font-weight:500}
+  .top .st{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+  .hero{padding:60px 0 40px;text-align:center;border-bottom:1px solid var(--ink)}
+  .hero .kick{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+  .hero h1{font-family:var(--didone);font-weight:500;font-size:clamp(40px,8vw,88px);line-height:.98;letter-spacing:-.01em}
+  .hero h1 .it{font-style:italic;font-weight:400}
+  .hero .lede{max-width:64ch;margin:26px auto 0;font-size:17.5px;color:var(--muted)}
+  .hero .swatchstrip{display:flex;gap:10px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+  .hero .swatchstrip span{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .hero .swatchstrip i{width:16px;height:16px;border-radius:50%;display:inline-block}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;padding:56px 0 30px}
+  .card{background:var(--card);border:1px solid var(--ink);overflow:hidden;display:flex;flex-direction:column}
+  .card .cap{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 26px;border-bottom:1px solid var(--line)}
+  .card .cap h3{font-family:var(--didone);font-weight:500;font-size:27px;letter-spacing:.01em}
+  .card .cap .sub{font-size:13.5px;color:var(--muted);margin-top:5px;max-width:36ch}
+  .card .cap .sw{display:flex;gap:7px;flex:none;margin-top:5px}
+  .card .cap .sw i{width:20px;height:20px;border-radius:50%;border:1px solid rgba(0,0,0,.1)}
+  .card .preview{position:relative;height:440px;overflow:hidden;background:#e7e6e2;border-bottom:1px solid var(--line)}
+  .frame-scaler{position:absolute;top:0;left:0;width:1280px;transform-origin:top left;pointer-events:none}
+  .frame-scaler iframe{width:1280px;height:1700px;border:0;display:block;background:#fff}
+  .card .preview .num{position:absolute;top:14px;left:16px;z-index:3;font-family:var(--didone);font-style:italic;font-size:22px;color:#fff;mix-blend-mode:difference}
+  .card .preview .cover-link{position:absolute;inset:0;z-index:4}
+  .card .open{display:flex;align-items:center;justify-content:space-between;padding:18px 26px;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);transition:.2s}
+  .card .open:hover{background:var(--ink);color:#fff}
+  .card .open .arr{font-family:var(--didone);font-style:italic;text-transform:none;font-size:16px}
+
+  .foot-note{margin:26px 0 0;border-top:1px solid var(--line);padding:30px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  .foot-note .t{font-size:15px;color:var(--muted);max-width:60ch}.foot-note .t b{color:var(--ink)}
+  .foot-note a{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--ink);padding:11px 18px;transition:.2s}
+  .foot-note a:hover{background:var(--ink);color:#fff}
+
+  @media(max-width:900px){.grid{grid-template-columns:1fr}.card .preview{height:380px}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top"><div class="id">Sanket Naik</div><div class="st">Editorial Noir · colour study · Jun 2026</div></div>
+
+    <section class="hero">
+      <div class="kick">Editorial Noir — in colour</div>
+      <h1>The same <span class="it">noir</span>, four <span class="it">moods.</span></h1>
+      <p class="lede">Keeping the dramatic Bodoni Didone, the generous whitespace and the gallery layout — but letting one considered colour set the tone. Three are quiet accent treatments; one goes bold with a full-colour hero. Open any to experience the whole page.</p>
+      <div class="swatchstrip">
+        <span><i style="background:#9e2b25"></i>Crimson</span>
+        <span><i style="background:#1f3aa6"></i>Cobalt</span>
+        <span><i style="background:#0f6b4f"></i>Emerald</span>
+        <span><i style="background:#1b39c4"></i>Sapphire</span>
+      </div>
+    </section>
+
+    <div class="grid">
+      <article class="card">
+        <div class="cap"><div><h3>Crimson Press</h3><div class="sub">Oxblood display type on a warm ivory page. Literary, classic.</div></div><div class="sw"><i style="background:#fbf8f4"></i><i style="background:#9e2b25"></i><i style="background:#1c1413"></i></div></div>
+        <div class="preview"><span class="num">I.</span><div class="frame-scaler" data-src="directions/noir/crimson.html"></div><a class="cover-link" href="directions/noir/crimson.html" target="_blank" aria-label="Open Crimson Press"></a></div>
+        <a class="open" href="directions/noir/crimson.html" target="_blank">Open full page <span class="arr">→</span></a>
+      </article>
+
+      <article class="card">
+        <div class="cap"><div><h3>Cobalt Editorial</h3><div class="sub">Cool blue-white with cobalt accents on the italic words. Considered.</div></div><div class="sw"><i style="background:#f7f8fc"></i><i style="background:#1f3aa6"></i><i style="background:#0e1120"></i></div></div>
+        <div class="preview"><span class="num">II.</span><div class="frame-scaler" data-src="directions/noir/cobalt.html"></div><a class="cover-link" href="directions/noir/cobalt.html" target="_blank" aria-label="Open Cobalt Editorial"></a></div>
+        <a class="open" href="directions/noir/cobalt.html" target="_blank">Open full page <span class="arr">→</span></a>
+      </article>
+
+      <article class="card">
+        <div class="cap"><div><h3>Emerald Salon</h3><div class="sub">A deep botanical green accent over soft mint-white. Refined, calm.</div></div><div class="sw"><i style="background:#f6faf8"></i><i style="background:#0f6b4f"></i><i style="background:#0c1512"></i></div></div>
+        <div class="preview"><span class="num">III.</span><div class="frame-scaler" data-src="directions/noir/emerald.html"></div><a class="cover-link" href="directions/noir/emerald.html" target="_blank" aria-label="Open Emerald Salon"></a></div>
+        <a class="open" href="directions/noir/emerald.html" target="_blank">Open full page <span class="arr">→</span></a>
+      </article>
+
+      <article class="card">
+        <div class="cap"><div><h3>Sapphire Block</h3><div class="sub">Bold — the whole hero floods sapphire, type reversed to white.</div></div><div class="sw"><i style="background:#1b39c4"></i><i style="background:#fbfbfd"></i><i style="background:#0c0e1a"></i></div></div>
+        <div class="preview"><span class="num">IV.</span><div class="frame-scaler" data-src="directions/noir/sapphire.html"></div><a class="cover-link" href="directions/noir/sapphire.html" target="_blank" aria-label="Open Sapphire Block"></a></div>
+        <a class="open" href="directions/noir/sapphire.html" target="_blank">Open full page <span class="arr">→</span></a>
+      </article>
+    </div>
+
+    <div class="foot-note">
+      <div class="t"><b>Want a different colour?</b> These are easy to retune — name any hue (or a brand colour) and I'll dial it in. Prefer the original black &amp; white? It's still here.</div>
+      <a href="directions/noir.html" target="_blank">View original B&amp;W →</a>
+    </div>
+  </div>
+<script>
+  function build(){
+    document.querySelectorAll('.frame-scaler').forEach(s=>{
+      const pv=s.parentElement;const scale=pv.clientWidth/1280;
+      s.style.transform='scale('+scale+')';
+      if(!s.dataset.loaded){const f=document.createElement('iframe');f.setAttribute('scrolling','no');f.setAttribute('tabindex','-1');f.src=s.dataset.src;s.appendChild(f);s.dataset.loaded='1';}
+    });
+  }
+  build();let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(build,150)});
+</script>
+</body>
+</html>

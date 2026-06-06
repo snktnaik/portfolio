@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Researching Safer Washrooms for the Elderly — Sanket Naik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<style>
+  :root{
+    --paper:#fbfbfd;--ink:#0c0e1a;--muted:#6f7388;--faint:#a8acbe;--line:#e3e4ec;
+    --accent:#1b39c4;
+    --didone:"Playfair Display",Georgia,serif;--sans:"Helvetica Neue",Helvetica,Arial,sans-serif;--maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 44px}
+  .oversmall{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--ink)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{font-family:var(--didone);font-size:23px;font-weight:600;letter-spacing:.01em;white-space:nowrap;display:inline-flex;align-items:center;gap:12px}
+  .brand-mark{height:34px;width:auto;display:block;border-radius:4px}
+  .back{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:10px;transition:.2s}
+  .back:hover{color:var(--accent)}
+
+  /* hero */
+  .cs-hero{background:var(--accent);color:#fff;padding:60px 0 0;border-bottom:1px solid var(--ink)}
+  .cs-hero .eyebrow{color:rgba(255,255,255,.72);margin-bottom:20px}
+  .cs-hero h1{font-family:var(--didone);font-weight:600;font-size:clamp(32px,4.8vw,64px);line-height:1.02;letter-spacing:-.01em}
+  .cs-hero h1 .it{font-style:italic;font-weight:500}
+  .cs-hero .lede{max-width:60ch;margin:20px 0 0;font-size:18px;color:rgba(255,255,255,.86);line-height:1.6}
+  .cs-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:46px;padding:26px 0;border-top:1px solid rgba(255,255,255,.25)}
+  .cs-meta .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:9px}
+  .cs-meta .v{font-family:var(--didone);font-size:17px;line-height:1.3}
+  .cs-meta .v small{font-family:var(--sans);font-size:12px;color:rgba(255,255,255,.65);display:block;margin-top:2px}
+  .hero-img{width:100%;display:block;border-top:1px solid rgba(255,255,255,.18);max-height:480px;object-fit:cover;object-position:center 30%}
+
+  /* body */
+  .cs-body{padding:20px 0 70px}
+
+  /* section blocks */
+  .block{padding:44px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start}
+  .block .lbl{position:sticky;top:90px;display:flex;flex-direction:column;gap:6px}
+  .block .lbl .idx{font-family:var(--didone);font-style:italic;font-size:20px;color:var(--accent);line-height:1}
+  .block .lbl .t{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .block h2{font-family:var(--didone);font-weight:600;font-size:clamp(24px,2.8vw,32px);letter-spacing:.005em;margin-bottom:16px;line-height:1.15}
+  .block p{color:var(--muted);margin-bottom:16px;max-width:64ch;font-size:15.5px}
+  .block p strong{color:var(--ink);font-weight:500}
+
+  /* pull quote */
+  .pull{font-family:var(--didone);font-size:clamp(20px,2.4vw,27px);line-height:1.45;color:var(--ink);margin:28px 0;max-width:26ch;border-left:3px solid var(--accent);padding-left:20px}
+  .pull .a{color:var(--accent);font-style:italic}
+
+  /* lists */
+  ul.clean{list-style:none;margin:10px 0 18px}
+  ul.clean li{padding:12px 0 12px 24px;border-top:1px solid var(--line);position:relative;color:var(--muted);font-size:15.5px}
+  ul.clean li:last-child{border-bottom:1px solid var(--line)}
+  ul.clean li::before{content:"";position:absolute;left:0;top:19px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  ul.clean li strong{color:var(--ink);font-weight:500}
+
+  /* image layouts */
+  .img-full{width:100%;display:block;border:1px solid var(--line)}
+  .img-caption{font-size:12px;letter-spacing:.04em;color:var(--faint);margin-top:8px;margin-bottom:22px}
+  .img-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+  .img-row img{width:100%;display:block;border:1px solid var(--line)}
+  .img-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:20px 0}
+  .img-row-3 img{width:100%;display:block;border:1px solid var(--line)}
+  .img-single{margin:20px 0}
+
+  /* findings grid */
+  .findings{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink);border:1px solid var(--ink);margin:24px 0}
+  .finding{background:var(--paper);padding:24px 22px}
+  .finding .fk{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  .finding .fv{font-family:var(--didone);font-size:20px;font-weight:600;line-height:1.2;margin-bottom:8px}
+  .finding .fd{font-size:14px;color:var(--muted)}
+
+  /* metrics */
+  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin:24px 0}
+  .metrics div{padding:26px 22px;border-right:1px solid var(--line)}
+  .metrics div:last-child{border-right:none}
+  .metrics .n{font-family:var(--didone);font-size:42px;line-height:1;color:var(--accent)}
+  .metrics .l{font-size:13px;color:var(--muted);margin-top:10px}
+
+  /* footer */
+  .cs-foot{border-top:1px solid var(--ink);padding:54px 0 30px}
+  .cs-foot .row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .cs-foot .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .cs-foot a.title{font-family:var(--didone);font-size:26px;font-weight:600;display:inline-flex;align-items:center;gap:12px;transition:.2s}
+  .cs-foot a.title:hover{color:var(--accent);font-style:italic}
+  .cs-foot .next{text-align:right}
+  .all-work{display:block;text-align:center;margin-top:44px}
+  .all-work a{font-family:var(--didone);font-size:18px;border-bottom:1px solid var(--accent);padding-bottom:3px;transition:.2s}
+  .all-work a:hover{color:var(--accent)}
+  footer.colophon{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:28px 0 56px}
+
+  @media(max-width:860px){
+    .wrap{padding:0 20px}
+    .cs-meta{grid-template-columns:1fr 1fr;padding:20px 0}
+    .block{grid-template-columns:1fr;gap:14px}.block .lbl{position:static}
+    .img-row,.img-row-3,.findings{grid-template-columns:1fr}
+    .metrics{grid-template-columns:1fr}.metrics div{border-right:none;border-bottom:1px solid var(--line)}
+    .cs-foot .row{flex-direction:column;align-items:flex-start}.cs-foot .next{text-align:left}
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="brand"><img src="../images/logo.png" class="brand-mark" alt="SN">Sanket Naik</a>
+    <a href="../index.html#work" class="back">← All work</a>
+  </div>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="oversmall eyebrow">M.Des Thesis · IIT Delhi · July 2022</div>
+      <h1>Researching Safer <span class="it">Washrooms</span><br>for the Elderly</h1>
+      <p class="lede">A research design project exploring why washrooms are dangerous for elderly Indians — and designing, prototyping and simulating a mechanism to help them get in and out of the toilet seat safely.</p>
+      <div class="cs-meta">
+        <div><div class="k">Role</div><div class="v">Lead Researcher<small>Solo thesis</small></div></div>
+        <div><div class="k">Duration</div><div class="v">2021 — 2022<small>Two semesters</small></div></div>
+        <div><div class="k">Supervisors</div><div class="v">Prof. Gourab Kar<small>+ Prof. S. Paldas</small></div></div>
+        <div><div class="k">Methods</div><div class="v">Field + Simulation<small>Kinovea · PoseNet</small></div></div>
+      </div>
+    </div>
+    <img class="hero-img" src="thesis-images/page-38.jpg" alt="Field study participants map — Goa">
+  </section>
+
+  <section class="cs-body">
+    <div class="wrap">
+
+      <!-- 01 Problem -->
+      <div class="block">
+        <div class="lbl"><div class="idx">01</div><div class="t">The Problem</div></div>
+        <div>
+          <h2>Washrooms are one of the most dangerous places in the home for the elderly.</h2>
+          <p>Elderly people face a convergence of risks in washrooms: <strong>reduced dexterity, vision loss, weakened strength</strong>, and the prevalence of wet, slippery surfaces. Falls in bathrooms are a leading cause of serious injury — and sometimes death — in older populations.</p>
+          <p>Despite this, grab bar standards in India are largely copied from international guidelines that don't account for Indian body dimensions or toilet usage habits. The brief was to investigate this problem, understand what the elderly actually need, and design a solution — or at least lay the evidence base for one.</p>
+          <div class="pull">Standards copied from abroad <span class="a">don't fit</span> Indian bodies — or how they move.</div>
+          <div class="img-row">
+            <div>
+              <img src="thesis-images/page-40.jpg" class="img-full" alt="Photographs of toilets used by elderly at home">
+              <div class="img-caption">Fig — Photographs of toilets used by elderly participants at home (Goa fieldwork)</div>
+            </div>
+            <div>
+              <img src="thesis-images/page-43.jpg" class="img-full" alt="Interview with Shridhar Parsekar, 84 yrs">
+              <div class="img-caption">Fig — Interview with Shridhar Parsekar (84 yrs), one of 26 participants studied</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Field Studies -->
+      <div class="block">
+        <div class="lbl"><div class="idx">02</div><div class="t">Field Studies</div></div>
+        <div>
+          <h2>26 elderly participants across Goa — in their own homes.</h2>
+          <p>Field studies were conducted in Goa (my home state), where I had the advantage of language familiarity and access to elderly participants willing to be observed at home. A total of <strong>26 participants aged 50 and above</strong> were studied — some even hosted me overnight.</p>
+          <ul class="clean">
+            <li><strong>Interviews</strong> — understanding daily toilet habits, pain points, fears and workarounds</li>
+            <li><strong>Home observations</strong> — documenting the real conditions of washrooms elderly people live with, not sanitised lab setups</li>
+            <li><strong>Insight synthesis</strong> — surface safety, grab support, and toilet seat height were the dominant concerns</li>
+          </ul>
+          <p>The photographs from participants' homes revealed a consistent pattern: make-do arrangements, stools used as transfer aids, and almost no safety infrastructure by design.</p>
+        </div>
+      </div>
+
+      <!-- 03 Literature + Standards -->
+      <div class="block">
+        <div class="lbl"><div class="idx">03</div><div class="t">Literature Review</div></div>
+        <div>
+          <h2>What the standards say — and why they fall short.</h2>
+          <p>An extensive literature review covered: bathroom falls and accident data, Universal/Accessible Design principles, existing simulation studies, toilet grab bar arrangements globally, and Indian BIS/NBC standards.</p>
+          <p>The core finding from the review: <strong>Indian grab bar height standards appear to be directly copied from international sources</strong>, without local anthropometric validation. There is real confusion about what height the bars should be, and no consensus from evidence.</p>
+          <p>This directly seeded the subsequent IEA-published paper — "Are Guidelines and Standards for Design of Accessible Toilets in India Evidence-Based?" (IEA 2024).</p>
+        </div>
+      </div>
+
+      <!-- 04 Ideation -->
+      <div class="block">
+        <div class="lbl"><div class="idx">04</div><div class="t">Ideation</div></div>
+        <div>
+          <h2>5 mechanisms for getting on and off a toilet seat.</h2>
+          <p>With insights from the field, I initiated an ideation process focused on a mechanism that could help elderly users sit down and stand up from a toilet seat. The mechanism had to meet three conditions:</p>
+          <ul class="clean">
+            <li>Help the user through <strong>wrist/bottom support</strong></li>
+            <li><strong>Collapsible</strong> — can be put aside when not in use</li>
+            <li><strong>No ground contact</strong> — for hygiene in wet washrooms</li>
+          </ul>
+          <div class="img-single">
+            <img src="thesis-images/page-46.jpg" class="img-full" alt="Ideation sketches and Mechanism A concepts">
+            <div class="img-caption">Fig 18/19 — Ideation sketches for toilet seat mechanisms, and Mechanism A (lifting + storage mechanism)</div>
+          </div>
+          <p>Five mechanisms were developed. <strong>Mechanism D</strong> was selected for prototyping — a laser-cut MDF linkage system designed to assist the standing motion using a gas spring.</p>
+        </div>
+      </div>
+
+      <!-- 05 Prototyping -->
+      <div class="block">
+        <div class="lbl"><div class="idx">05</div><div class="t">Prototyping</div></div>
+        <div>
+          <h2>Laser-cut MDF mock-up, fabricated and assembled by hand.</h2>
+          <p>Mechanism D was laser cut in MDF material. The parts were assembled and iterated — a physical prototype ready to be tested with the washroom (WC) setup. This hands-on fabrication phase included 3D printed components for hinges and mounts, and a gas spring for actuation.</p>
+          <div class="img-single">
+            <img src="thesis-images/page-50.jpg" class="img-full" alt="Mock-up fabrication — laser cut parts and assembly">
+            <div class="img-caption">Fig 30–34 — Laser cutting profile, cut parts, and assembly working views of Mechanism D</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 Simulation Studies -->
+      <div class="block">
+        <div class="lbl"><div class="idx">06</div><div class="t">Simulation Studies</div></div>
+        <div>
+          <h2>A controlled lab environment, two cameras, computer vision.</h2>
+          <p>The simulation study was designed to record and analyse the body movements of participants using the toilet setup. A gridded wall environment was constructed, two cameras placed (side view and top view), and participants recorded performing sit-to-stand transitions.</p>
+          <div class="img-single">
+            <img src="thesis-images/page-55.jpg" class="img-full" alt="WC simulation setup — cameras and test rig">
+            <div class="img-caption">Fig 52–60 — WC setup, 3D printed camera mount, camera feed views, and CAD model of the simulation rig</div>
+          </div>
+          <p>Two simulation rounds were run. The second used <strong>Kinovea</strong>, an open-source motion tracking tool, to track white markers placed on participants' wrists, elbows and shoulders during the sit-to-stand motion. <strong>PoseNet</strong> was also evaluated for pose estimation.</p>
+          <div class="img-single">
+            <img src="thesis-images/page-65.jpg" class="img-full" alt="Kinovea motion tracking — wrist, elbow and shoulder linepaths">
+            <div class="img-caption">Fig 85/86 — Kinovea software tracking markers; consolidated linepaths of wrist (purple), elbow (red) and shoulder (blue)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 Linepath Extraction -->
+      <div class="block">
+        <div class="lbl"><div class="idx">07</div><div class="t">Linepath Analysis</div></div>
+        <div>
+          <h2>Frame-by-frame tracking to extract the exact paths limbs follow.</h2>
+          <p>All video recordings were split into individual frames. Using Illustrator and Kinovea, the positions of the wrist and shoulder were marked at each frame — building up the linepath each joint follows during the sit-to-stand movement. This was done for all 12 participants in the pilot trials.</p>
+          <div class="img-single">
+            <img src="thesis-images/page-60.jpg" class="img-full" alt="Detailed linepath extraction — frame-by-frame tracking">
+            <div class="img-caption">Fig 73 — Tracing paths of wrist and shoulder through frame extraction of participants during toilet use</div>
+          </div>
+          <p>The resulting XY scatter plots showed the displacement trajectories of each joint — revealing a consistent pattern across participants that could be used to define a <strong>grab bar height zone</strong> that intercepts the wrist and elbow at the most critical moment of the motion.</p>
+          <div class="img-single">
+            <img src="thesis-images/page-80.jpg" class="img-full" alt="Data extraction — XY scatter plot of linepath from Kinovea">
+            <div class="img-caption">Fig 98 — XY scatter plot of linepath data extracted from Kinovea for all participants</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 Findings -->
+      <div class="block">
+        <div class="lbl"><div class="idx">08</div><div class="t">Findings</div></div>
+        <div>
+          <h2>What the data said about grab bar placement.</h2>
+          <div class="findings">
+            <div class="finding">
+              <div class="fk">Finding 01 — Height</div>
+              <div class="fv">650 mm from floor — preferred grab bar height</div>
+              <div class="fd">From subjective data across participants, 650mm from the toilet floor was the most preferred discrete height tested. The second preferred was 675mm.</div>
+            </div>
+            <div class="finding">
+              <div class="fk">Finding 02 — Linepaths</div>
+              <div class="fv">Wrist, elbow & shoulder follow consistent arcs</div>
+              <div class="fd">All three joints follow predictable curved paths during sit-to-stand transitions — the wrist (purple), elbow (red) and shoulder (blue) arc in a way that defines where support is most needed.</div>
+            </div>
+            <div class="finding">
+              <div class="fk">Finding 03 — Standards</div>
+              <div class="fv">Indian standards appear copied, not evidence-based</div>
+              <div class="fd">Existing national standards describe different, conflicting height ranges — and appear to be adapted from international sources without local validation.</div>
+            </div>
+            <div class="finding">
+              <div class="fk">Finding 04 — Benchmark</div>
+              <div class="fv">Pilot data (20–35 yr) provides the healthy baseline</div>
+              <div class="fd">The pilot trials used younger participants (20–35 yrs) to establish a baseline. The next phase — running the same protocol on elderly participants — remains future work.</div>
+            </div>
+          </div>
+          <div class="metrics">
+            <div><div class="n">26</div><div class="l">Elderly participants in field study (50+ yrs)</div></div>
+            <div><div class="n">3</div><div class="l">Joint paths tracked: wrist, elbow, shoulder</div></div>
+            <div><div class="n">650mm</div><div class="l">Preferred grab bar height for Indian population</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 Reflection -->
+      <div class="block">
+        <div class="lbl"><div class="idx">09</div><div class="t">Reflection</div></div>
+        <div>
+          <h2>What I carried forward.</h2>
+          <p>This project was far more than an academic exercise — it grounded me in the reality that <strong>design standards can cause harm through inaction</strong>. Grab bar placements that don't reflect how Indian bodies move in a washroom are not neutral; they actively fail the people who need them most.</p>
+          <p>The field work in Goa — staying with participants, seeing their actual bathrooms, hearing their workarounds — was formative. It confirmed that real design research starts outside the lab.</p>
+          <p>The raw data, linepaths and methodology from this thesis were handed over to my guides for further research. The question I raised — are India's accessible-toilet standards actually evidence-based? — became the direct basis of the co-authored paper published at the <strong>22nd IEA Congress (IEA 2024)</strong>.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cs-foot">
+    <div class="wrap">
+      <div class="row">
+        <div class="prev"><div class="k">Previous</div><a href="case-study.html#desmania" class="title">← Desmania Internship</a></div>
+        <div class="next"><div class="k">Next project</div><a href="case-study.html#enterprise-platform" class="title">Enterprise Platform UX →</a></div>
+      </div>
+      <div class="all-work"><a href="../index.html#work">View all work</a></div>
+    </div>
+  </section>
+  <div class="wrap"><footer class="colophon"><span class="oversmall">Sanket Subhash Naik · IIT Delhi M.Des Thesis 2022</span><span class="oversmall">© 2026</span></footer></div>
+</main>
+</body>
+</html>

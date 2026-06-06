@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanket Naik — Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f4ee;
+    --paper-2:#efebe2;
+    --ink:#1c1a16;
+    --ink-soft:#5d574c;
+    --line:#ddd6c8;
+    --accent:oklch(0.58 0.13 42);
+    --accent-soft:oklch(0.58 0.13 42 / 0.12);
+    --serif:"Newsreader",Georgia,serif;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--accent-soft)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+  .serif{font-family:var(--serif)}
+
+  /* ---- nav ---- */
+  header.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{font-family:var(--serif);font-size:20px;letter-spacing:.01em;display:flex;align-items:center;gap:10px;white-space:nowrap}
+  .brand .mark{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:12px;font-family:var(--sans);font-weight:600}
+  nav ul{display:flex;gap:34px;list-style:none;align-items:center}
+  nav a{font-size:14px;letter-spacing:.04em;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .2s}
+  nav a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--accent);transition:width .25s}
+  nav a:hover{color:var(--ink)}nav a:hover::after{width:100%}
+  .nav-cta{border:1px solid var(--ink);border-radius:40px;padding:9px 18px!important;color:var(--ink)!important}
+  .nav-cta:hover{background:var(--ink);color:var(--paper)!important}
+  .nav-cta::after{display:none}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+  .burger span{width:24px;height:1.5px;background:var(--ink)}
+
+  /* ---- hero ---- */
+  .hero{padding:84px 0 64px}
+  .hero .eyebrow{display:flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:30px}
+  .hero .eyebrow::before{content:"";width:42px;height:1px;background:var(--accent)}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,7vw,92px);line-height:1.02;letter-spacing:-.015em;max-width:14ch}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero-foot{display:flex;flex-wrap:wrap;gap:48px;margin-top:48px;align-items:flex-end;justify-content:space-between}
+  .hero-foot p{max-width:46ch;color:var(--ink-soft);font-size:18px}
+  .hero-meta{font-size:13px;letter-spacing:.04em;color:var(--ink-soft);text-align:right;line-height:1.9;white-space:nowrap}
+  .hero-meta strong{color:var(--ink);font-weight:500;display:block;font-family:var(--serif);font-size:16px}
+  .scroll-cue{display:flex;align-items:center;gap:10px;margin-top:60px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+  .scroll-cue .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+  /* ---- section heading ---- */
+  .sec{padding:90px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:54px}
+  .sec-head .num{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:22px}
+  .sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,46px);letter-spacing:-.01em}
+  .sec-head .count{margin-left:auto;font-size:13px;letter-spacing:.04em;color:var(--ink-soft)}
+
+  /* ---- work grid ---- */
+  .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px 48px}
+  .proj{cursor:pointer}
+  .proj:nth-child(even){margin-top:64px}
+  .proj .thumb{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:3px;background:
+    repeating-linear-gradient(135deg,var(--paper-2),var(--paper-2) 11px,#e7e1d4 11px,#e7e1d4 22px);
+    border:1px solid var(--line);display:grid;place-items:center}
+  .proj .thumb .ph{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#a79f8d;background:var(--paper);padding:5px 12px;border-radius:30px}
+  .proj .thumb::after{content:"";position:absolute;inset:0;background:var(--accent);opacity:0;transition:opacity .35s;mix-blend-mode:multiply}
+  .proj:hover .thumb::after{opacity:.10}
+  .proj .meta{display:flex;align-items:baseline;justify-content:space-between;margin-top:20px;gap:16px}
+  .proj h3{font-family:var(--serif);font-weight:400;font-size:25px;letter-spacing:-.01em;transition:color .25s}
+  .proj:hover h3{color:var(--accent)}
+  .proj .yr{font-size:13px;color:var(--ink-soft);white-space:nowrap}
+  .proj .cat{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:8px}
+  .proj .desc{margin-top:12px;color:var(--ink-soft);font-size:15.5px;max-width:42ch}
+  .proj .more{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:13px;letter-spacing:.04em;color:var(--ink);opacity:0;transform:translateY(4px);transition:.3s}
+  .proj:hover .more{opacity:1;transform:none}
+  .proj .more .arr{transition:transform .25s}.proj:hover .more .arr{transform:translateX(4px)}
+
+  /* ---- about ---- */
+  .about-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:60px}
+  .about-grid .lead{font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);line-height:1.45;letter-spacing:-.01em}
+  .about-grid .lead em{font-style:italic;color:var(--accent)}
+  .about-body p{color:var(--ink-soft);margin-bottom:18px;max-width:56ch}
+  .about-portrait{aspect-ratio:3/4;background:repeating-linear-gradient(135deg,var(--paper-2),var(--paper-2) 11px,#e7e1d4 11px,#e7e1d4 22px);border:1px solid var(--line);border-radius:3px;display:grid;place-items:center;margin-bottom:8px}
+  .about-portrait .ph{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#a79f8d;background:var(--paper);padding:5px 12px;border-radius:30px}
+
+  /* ---- skills ---- */
+  .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  .skill-block h4{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:22px}
+  .skill-list{display:flex;flex-direction:column}
+  .skill-list .row{display:flex;justify-content:space-between;align-items:baseline;padding:15px 0;border-top:1px solid var(--line);font-family:var(--serif);font-size:21px}
+  .skill-list .row:last-child{border-bottom:1px solid var(--line)}
+  .skill-list .row span{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* ---- experience ---- */
+  .exp-row{display:grid;grid-template-columns:160px 1fr auto;gap:30px;padding:26px 0;border-top:1px solid var(--line);align-items:baseline;transition:padding-left .3s}
+  .exp-row:last-child{border-bottom:1px solid var(--line)}
+  .exp-row:hover{padding-left:14px}
+  .exp-row .when{font-size:13px;letter-spacing:.03em;color:var(--ink-soft)}
+  .exp-row .role{font-family:var(--serif);font-size:23px}
+  .exp-row .org{color:var(--ink-soft);font-size:15px;margin-top:4px}
+  .exp-row .place{font-size:13px;color:var(--ink-soft);text-align:right;white-space:nowrap}
+  .pubs{margin-top:50px;background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:30px 34px}
+  .pubs .tag{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+  .pubs p{font-family:var(--serif);font-size:19px;line-height:1.4;max-width:70ch}
+  .pubs .cite{font-family:var(--sans);font-size:13px;color:var(--ink-soft);margin-top:10px}
+
+  /* ---- contact ---- */
+  .contact{padding:110px 0 70px;border-top:1px solid var(--line)}
+  .contact h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,8vw,108px);line-height:1;letter-spacing:-.02em}
+  .contact h2 a{border-bottom:2px solid var(--accent-soft);transition:border-color .3s}
+  .contact h2 a:hover{border-color:var(--accent)}
+  .contact-foot{display:flex;flex-wrap:wrap;gap:30px 70px;margin-top:64px;justify-content:space-between;align-items:flex-end}
+  .contact-links{display:flex;gap:14px;flex-wrap:wrap}
+  .contact-links a{border:1px solid var(--line);border-radius:40px;padding:11px 22px;font-size:14px;letter-spacing:.02em;transition:.25s}
+  .contact-links a:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+  .colophon{font-size:13px;color:var(--ink-soft);text-align:right;line-height:1.8}
+
+  /* reveal */
+  .reveal{opacity:1;transform:none}
+  
+
+  @media(max-width:860px){
+    .wrap{padding:0 22px}
+    nav ul{display:none}
+    .burger{display:flex}
+    .hero-foot{flex-direction:column;align-items:flex-start;gap:26px}
+    .hero-meta{text-align:left}
+    .work-grid{grid-template-columns:1fr;gap:48px}
+    .proj:nth-child(even){margin-top:0}
+    .about-grid{grid-template-columns:1fr;gap:34px}
+    .cols-2{grid-template-columns:1fr;gap:40px}
+    .exp-row{grid-template-columns:1fr;gap:6px}
+    .exp-row .place{text-align:left}
+    .contact-foot{flex-direction:column;align-items:flex-start}
+    .colophon{text-align:left}
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><span class="mark">SN</span>Sanket Naik</a>
+    <nav>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+      </ul>
+    </nav>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">UI/UX Designer &amp; UX Researcher · Bengaluru</div>
+      <h1 class="reveal">Designing <em>clarity</em> into complex enterprise software.</h1>
+      <div class="hero-foot">
+        <p class="reveal">Product &amp; UX designer with 3+ years in enterprise software — pairing M.Des research rigour from IIT Delhi with hands-on UI delivery.</p>
+        <div class="hero-meta reveal">
+          <strong>Currently</strong>
+          UI/UX Designer, TCS<br>
+          Open to new roles
+        </div>
+      </div>
+      <div class="scroll-cue reveal"><span class="dot"></span> Selected work below</div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="num">01</span>
+        <h2>Selected Work</h2>
+        <span class="count">Six projects</span>
+      </div>
+      <div class="work-grid">
+        <article class="proj reveal">
+          <div class="thumb"><span class="ph">Project cover · 4:3</span></div>
+          <div class="meta"><h3>Enterprise Platform UX</h3><span class="yr">2022—Now</span></div>
+          <div class="cat">Product Design · TCS</div>
+          <p class="desc">Designing and shipping interfaces for enterprise software used across large-scale operations.</p>
+          <span class="more">View case study <span class="arr">→</span></span>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb"><span class="ph">Research artefact</span></div>
+          <div class="meta"><h3>Accessible Sanitation</h3><span class="yr">2024</span></div>
+          <div class="cat">UX Research · Published</div>
+          <p class="desc">Co-authored study questioning whether India's accessible-toilet standards are evidence-based. 22nd IEA Congress.</p>
+          <span class="more">View case study <span class="arr">→</span></span>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb"><span class="ph">Product &amp; brand</span></div>
+          <div class="meta"><h3>Thinkaprint</h3><span class="yr">2017—20</span></div>
+          <div class="cat">Co-founder · Product &amp; Brand</div>
+          <p class="desc">Co-founded a 3D-printing venture in Goa — building product, brand and customer experience from zero.</p>
+          <span class="more">View case study <span class="arr">→</span></span>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb"><span class="ph">Industrial design</span></div>
+          <div class="meta"><h3>Desmania Internship</h3><span class="yr">2021</span></div>
+          <div class="cat">Industrial Design</div>
+          <p class="desc">Industrial design exploration during the M.Des programme at IIT Delhi.</p>
+          <span class="more">View case study <span class="arr">→</span></span>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb"><span class="ph">Fabrication</span></div>
+          <div class="meta"><h3>Scrap 3D Printer</h3><span class="yr">2016</span></div>
+          <div class="cat">Fabrication · Press feature</div>
+          <p class="desc">Built a working 3D printer from scrap materials — featured in The Goan.</p>
+          <span class="more">View case study <span class="arr">→</span></span>
+        </article>
+        <article class="proj reveal">
+          <div class="thumb"><span class="ph">Design research</span></div>
+          <div class="meta"><h3>M.Des Thesis</h3><span class="yr">2022</span></div>
+          <div class="cat">Design Research · IIT Delhi</div>
+          <p class="desc">Master's research applying structured design methods to a real-world problem space.</p>
+          <span class="more">View case study <span class="arr">→</span></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="num">02</span><h2>About</h2></div>
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="about-portrait"><span class="ph">Portrait · 3:4</span></div>
+        </div>
+        <div class="reveal">
+          <p class="lead">I'm Sanket — a designer who moves comfortably between <em>research</em> and <em>pixels</em>, shaping enterprise tools that people actually want to use.</p>
+          <div class="about-body" style="margin-top:30px">
+            <p>My path runs from mechanical engineering in Goa, through a master's in Industrial Design at IIT Delhi, to product and UX design at TCS. Along the way I co-founded a 3D-printing startup and published research on accessible design.</p>
+            <p>That mix means I bring both the discipline of structured research and the instinct of someone who has shipped real products and run a business. I care about clarity, evidence, and details that hold up under scrutiny.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="sec" id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="num">03</span><h2>Capabilities &amp; Tools</h2></div>
+      <div class="cols-2">
+        <div class="skill-block reveal">
+          <h4>What I do</h4>
+          <div class="skill-list">
+            <div class="row">UX Research <span>Interviews · Synthesis</span></div>
+            <div class="row">Product Design <span>End-to-end</span></div>
+            <div class="row">Design Systems <span>Scale</span></div>
+            <div class="row">Prototyping <span>Hi-fi · Flows</span></div>
+          </div>
+        </div>
+        <div class="skill-block reveal">
+          <h4>Tools</h4>
+          <div class="skill-list">
+            <div class="row">Figma <span>Primary</span></div>
+            <div class="row">Adobe XD <span>UI</span></div>
+            <div class="row">Illustrator <span>Vector</span></div>
+            <div class="row">Photoshop &amp; AI <span>Visual · Workflow</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sec" id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="num">04</span><h2>Experience &amp; Education</h2></div>
+      <div class="reveal">
+        <div class="exp-row"><div class="when">Oct 2022 — Now</div><div><div class="role">UI/UX Designer</div><div class="org">TCS</div></div><div class="place">Bengaluru</div></div>
+        <div class="exp-row"><div class="when">2020 — 2022</div><div><div class="role">M.Des, Industrial Design</div><div class="org">IIT Delhi · CGPA 8.1</div></div><div class="place">New Delhi</div></div>
+        <div class="exp-row"><div class="when">Jun — Jul 2021</div><div><div class="role">Industrial Design Intern</div><div class="org">Desmania Design</div></div><div class="place">Manesar</div></div>
+        <div class="exp-row"><div class="when">2017 — 2020</div><div><div class="role">Co-founder</div><div class="org">Thinkaprint</div></div><div class="place">Goa</div></div>
+        <div class="exp-row"><div class="when">2015</div><div><div class="role">Apprentice Engineer</div><div class="org">Pentair Water Pvt Ltd</div></div><div class="place">Goa</div></div>
+        <div class="exp-row"><div class="when">2010 — 2014</div><div><div class="role">B.E., Mechanical Engineering</div><div class="org">Goa College of Engineering</div></div><div class="place">Goa</div></div>
+      </div>
+      <div class="pubs reveal">
+        <div class="tag">Published Research</div>
+        <p>“Are Guidelines and Standards for Design of Accessible Toilets in India Evidence-Based?”</p>
+        <div class="cite">Co-Author · Proceedings, 22nd IEA Congress, Vol. 5 (IEA 2024)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:30px"><span class="num">05</span><h2 style="font-size:clamp(30px,4vw,46px)">Contact</h2></div>
+      <h2 class="reveal">Let's build something<br>worth using. <a href="mailto:sanketmdes20@gmail.com">Say hello →</a></h2>
+      <div class="contact-foot">
+        <div class="contact-links reveal">
+          <a href="mailto:sanketmdes20@gmail.com">sanketmdes20@gmail.com</a>
+          <a href="tel:7709787457">+91 77097 87457</a>
+          <a href="https://www.linkedin.com/in/sanket-naik-81902997" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.behance.net/snktnaik41" target="_blank" rel="noopener">Behance</a>
+        </div>
+        <div class="colophon reveal">Sanket Subhash Naik<br>© 2026 · Bengaluru, India</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // reveal on scroll, with a guaranteed-visibility fallback
+  (function(){
+    const els=[...document.querySelectorAll('.reveal')];
+    let fired=false;
+    if('IntersectionObserver' in window){
+      const io=new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');fired=true;o.unobserve(e.target)}})},{threshold:.1});
+      els.forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%6,4)*60)+'ms';io.observe(el)});
+      setTimeout(()=>{if(!fired)els.forEach(e=>e.classList.add('in'))},900);
+    } else { els.forEach(e=>e.classList.add('in')); }
+  })();
+</script>
+</body>
+</html>

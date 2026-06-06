@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanket Naik — Portfolio Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e9e7e1;
+    --card:#fdfcf9;
+    --ink:#1c1a16;
+    --ink-soft:#6b665b;
+    --line:#d3cfc4;
+    --accent:oklch(0.58 0.13 42);
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --serif:"Newsreader",Georgia,serif;
+    --mono:"IBM Plex Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 36px}
+
+  /* masthead */
+  .top{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}
+  .top .id{font-family:var(--mono);font-size:13px;letter-spacing:.02em}
+  .top .id b{font-weight:500}
+  .top .st{font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+
+  .hero{padding:70px 0 50px}
+  .hero .kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,68px);line-height:1.05;letter-spacing:-.015em;max-width:18ch}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero .lede{margin-top:26px;max-width:62ch;font-size:18px;color:var(--ink-soft)}
+
+  /* brief */
+  .brief{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
+  .brief .b{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
+  .brief .b h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+  .brief .b p{font-size:14.5px;color:var(--ink-soft)}
+  .brief .b p b{color:var(--ink);font-weight:500}
+
+  /* section label */
+  .divider{display:flex;align-items:baseline;gap:16px;margin:74px 0 8px}
+  .divider .n{font-family:var(--mono);font-size:13px;color:var(--accent)}
+  .divider h2{font-family:var(--serif);font-weight:400;font-size:30px}
+  .divider .hint{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+  .sub{color:var(--ink-soft);max-width:64ch;margin-top:6px;font-size:16px}
+
+  /* option cards */
+  .options{display:flex;flex-direction:column;gap:30px;margin-top:34px}
+  .opt{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:300px 1fr}
+  .opt .desc{padding:34px;border-right:1px solid var(--line);display:flex;flex-direction:column}
+  .opt .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .opt h3{font-family:var(--serif);font-weight:400;font-size:30px;letter-spacing:-.01em;margin-bottom:6px}
+  .opt .one{font-size:14px;color:var(--ink-soft);margin-bottom:20px}
+  .opt ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+  .opt ul li{font-size:13.5px;color:var(--ink-soft);padding-left:18px;position:relative}
+  .opt ul li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .opt .swatches{display:flex;gap:7px;margin-bottom:24px}
+  .opt .swatches span{width:26px;height:26px;border-radius:50%;border:1px solid rgba(0,0,0,.08)}
+  .opt .open{margin-top:auto;display:inline-flex;align-items:center;gap:9px;align-self:flex-start;background:var(--ink);color:var(--card);padding:12px 22px;border-radius:40px;font-size:14px;font-weight:500;text-decoration:none;transition:.25s}
+  .opt .open:hover{background:var(--accent)}
+  .opt .open .arr{transition:transform .25s}.opt .open:hover .arr{transform:translateX(4px)}
+
+  /* preview frame */
+  .preview{position:relative;background:#cfccc4;min-height:520px;overflow:hidden}
+  .frame-scaler{position:absolute;top:0;left:0;width:1280px;transform-origin:top left;pointer-events:none}
+  .frame-scaler iframe{width:1280px;height:1760px;border:0;background:#fff;display:block}
+  .preview .badge{position:absolute;top:16px;left:16px;z-index:3;font-family:var(--mono);font-size:11px;letter-spacing:.04em;background:rgba(20,18,14,.82);color:#fff;padding:6px 12px;border-radius:30px;backdrop-filter:blur(4px)}
+  .preview .cover-link{position:absolute;inset:0;z-index:4;text-decoration:none}
+  .preview .scroll-note{position:absolute;bottom:14px;right:16px;z-index:3;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-soft);background:rgba(255,255,255,.7);padding:5px 11px;border-radius:30px}
+
+  footer{margin-top:80px;border-top:1px solid var(--line);padding:34px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+
+  @media(max-width:900px){
+    .brief{grid-template-columns:1fr}
+    .opt{grid-template-columns:1fr}
+    .opt .desc{border-right:none;border-bottom:1px solid var(--line)}
+    .preview{min-height:420px}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="id"><b>SANKET NAIK</b> — Portfolio</div>
+      <div class="st">Design directions · v1 · Jun 2026</div>
+    </div>
+
+    <section class="hero">
+      <div class="kick">Pick a direction</div>
+      <h1>Three ways to tell <em>your</em> story.</h1>
+      <p class="lede">I built three complete, working homepage directions from your résumé — same content and structure, three distinct personalities. All are editorial (serif + sans), warm, and timeless, with the 2×2 project grid you picked. Browse each one live below, then tell me which to take forward — I'll build it out fully with project detail pages and tweaks.</p>
+
+      <div class="brief">
+        <div class="b"><h4>Who</h4><p><b>Sanket Subhash Naik</b> — UI/UX Designer &amp; UX Researcher. M.Des, IIT Delhi · 3+ yrs at TCS · ex-founder, published.</p></div>
+        <div class="b"><h4>Sections</h4><p><b>Hero · Work · About · Skills · Experience · Contact.</b> Six projects, grounded in your real engagements.</p></div>
+        <div class="b"><h4>Placeholders</h4><p>Striped boxes mark where your <b>project covers &amp; portrait</b> go. Share images and I'll drop them in.</p></div>
+      </div>
+    </section>
+
+    <div class="divider"><span class="n">01—03</span><h2>The three directions</h2><span class="hint">click any preview to open full →</span></div>
+    <p class="sub">Each preview is the real, scrollable page shown at a glance. Open it to experience the full thing.</p>
+
+    <div class="options">
+      <!-- A -->
+      <article class="opt">
+        <div class="desc">
+          <div class="tag">Direction A</div>
+          <h3>Editorial</h3>
+          <div class="one">Magazine-grade, serif-led, confident.</div>
+          <ul>
+            <li>Large Newsreader serif display headlines</li>
+            <li>Warm off-white paper, terracotta accent</li>
+            <li>Staggered, asymmetric project grid</li>
+          </ul>
+          <div class="swatches"><span style="background:#f7f4ee"></span><span style="background:#1c1a16"></span><span style="background:oklch(0.58 0.13 42)"></span><span style="background:#ddd6c8"></span></div>
+          <a class="open" href="directions/editorial.html" target="_blank">Open full page <span class="arr">→</span></a>
+        </div>
+        <div class="preview">
+          <div class="badge">A · Editorial</div>
+          <span class="scroll-note">preview</span>
+          <div class="frame-scaler" data-src="directions/editorial.html"></div>
+          <a class="cover-link" href="directions/editorial.html" target="_blank" aria-label="Open Editorial"></a>
+        </div>
+      </article>
+
+      <!-- B -->
+      <article class="opt">
+        <div class="desc">
+          <div class="tag">Direction B</div>
+          <h3>Warm &amp; Personal</h3>
+          <div class="one">Friendly, photo-forward, approachable.</div>
+          <ul>
+            <li>Humanist sans + serif italic accents</li>
+            <li>Sand/cream palette, rounded cards, soft shadows</li>
+            <li>Portrait hero with floating stat pills</li>
+          </ul>
+          <div class="swatches"><span style="background:#f3ead9"></span><span style="background:#2c241a"></span><span style="background:oklch(0.56 0.13 48)"></span><span style="background:oklch(0.62 0.10 130)"></span></div>
+          <a class="open" href="directions/warm.html" target="_blank">Open full page <span class="arr">→</span></a>
+        </div>
+        <div class="preview">
+          <div class="badge">B · Warm</div>
+          <span class="scroll-note">preview</span>
+          <div class="frame-scaler" data-src="directions/warm.html"></div>
+          <a class="cover-link" href="directions/warm.html" target="_blank" aria-label="Open Warm"></a>
+        </div>
+      </article>
+
+      <!-- C -->
+      <article class="opt">
+        <div class="desc">
+          <div class="tag">Direction C</div>
+          <h3>Classic Grid</h3>
+          <div class="one">Swiss, structured, monochrome, precise.</div>
+          <ul>
+            <li>Helvetica + IBM Plex Mono labels</li>
+            <li>Monochrome with one restrained ink-blue accent</li>
+            <li>Rigorous bordered grid &amp; CV table</li>
+          </ul>
+          <div class="swatches"><span style="background:#f4f3ef"></span><span style="background:#171717"></span><span style="background:oklch(0.55 0.11 250)"></span><span style="background:#cfcdc4"></span></div>
+          <a class="open" href="directions/classic.html" target="_blank">Open full page <span class="arr">→</span></a>
+        </div>
+        <div class="preview">
+          <div class="badge">C · Classic</div>
+          <span class="scroll-note">preview</span>
+          <div class="frame-scaler" data-src="directions/classic.html"></div>
+          <a class="cover-link" href="directions/classic.html" target="_blank" aria-label="Open Classic"></a>
+        </div>
+      </article>
+    </div>
+
+    <footer>
+      <span>SANKET SUBHASH NAIK · UI/UX DESIGNER</span>
+      <span>NEXT → pick a direction, I'll build it out</span>
+    </footer>
+  </div>
+
+<script>
+  // Build scaled live previews that fit each card's width
+  function buildPreviews(){
+    document.querySelectorAll('.frame-scaler').forEach(scaler=>{
+      const preview=scaler.parentElement;
+      const w=preview.clientWidth;
+      const scale=w/1280;
+      scaler.style.transform='scale('+scale+')';
+      preview.style.height=Math.round(520)+'px';
+      if(!scaler.dataset.loaded){
+        const ifr=document.createElement('iframe');
+        ifr.setAttribute('scrolling','no');
+        ifr.setAttribute('tabindex','-1');
+        ifr.src=scaler.dataset.src;
+        scaler.appendChild(ifr);
+        scaler.dataset.loaded='1';
+      }
+    });
+  }
+  buildPreviews();
+  let t;window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(buildPreviews,150)});
+</script>
+</body>
+</html>
