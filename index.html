@@ -3,433 +3,408 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanket Naik — Product Designer</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Sanket Naik — UI/UX Designer &amp; Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="images/logo.png">
 <style>
-  :root {
-    --bg: #FAFAF8;
-    --text: #111110;
-    --muted: #888884;
-    --rule: #E5E4E0;
-    --accent: #111110;
+  :root{
+    --paper:#fbfbfd;--ink:#0c0e1a;--muted:#6f7388;--faint:#a8acbe;--line:#e3e4ec;
+    --accent:#1b39c4;--on-accent:#ffffff;
+    --didone:"Playfair Display",Georgia,serif;--sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 44px}
+  .oversmall{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+
+  header.nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--ink)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{font-family:var(--didone);font-size:23px;font-weight:600;letter-spacing:.01em;white-space:nowrap;display:inline-flex;align-items:center;gap:12px}
+  .brand-mark{height:34px;width:auto;display:block;border-radius:4px}
+  nav ul{display:flex;gap:34px;list-style:none;align-items:center}
+  nav a{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:.2s}
+  nav a:hover{color:var(--accent)}
+  .nav-cta{color:var(--ink)!important;border-bottom:1px solid var(--accent);padding-bottom:3px}
+  .nav-cta:hover{color:var(--accent)!important}
+  .burger{display:none;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;z-index:70}
+  .burger span{width:24px;height:1px;background:var(--ink);transition:.3s}
+  body.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  body.menu-open .burger span:nth-child(2){opacity:0}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .drawer{position:fixed;inset:0;z-index:55;background:var(--paper);transform:translateY(-100%);transition:transform .5s cubic-bezier(.6,0,.2,1);visibility:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 32px}
+  body.menu-open .drawer{transform:none;visibility:visible}
+  .drawer a{font-family:var(--didone);font-size:13vw;line-height:1.3;border-bottom:1px solid var(--line);padding:14px 0;display:flex;justify-content:space-between;align-items:baseline}
+  .drawer a .n{font-family:var(--sans);font-size:12px;letter-spacing:.2em;color:var(--accent)}
+  @media(min-width:861px){.drawer{display:none}}
+
+  /* hero */
+  .hero{padding:72px 0 54px;text-align:center;background:var(--accent);border-bottom:1px solid var(--accent);transition:background .4s}
+  .hero .kicker{margin-bottom:30px;color:rgba(255,255,255,.72)}
+  .hero h1{font-family:var(--didone);font-weight:600;font-size:clamp(54px,13vw,180px);line-height:.94;letter-spacing:-.01em;color:#fff}
+  .hero h1 .it{font-style:italic;font-weight:500}
+  .hero .role{font-family:var(--didone);font-style:italic;font-size:clamp(20px,2.6vw,30px);margin-top:18px;color:rgba(255,255,255,.94)}
+  .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-top:48px;text-align:left;flex-wrap:wrap}
+  .hero-foot p{max-width:44ch;font-size:17px;color:rgba(255,255,255,.82)}
+  .hero-foot .right{text-align:right}
+  .hero-foot .right .v{font-family:var(--didone);font-size:19px;color:#fff;white-space:nowrap}
+  .hero-foot .right .oversmall{color:rgba(255,255,255,.72)}
+  /* minimal hero variant */
+  body[data-hero="minimal"] .hero{background:var(--paper);border-bottom-color:var(--ink)}
+  body[data-hero="minimal"] .hero .kicker{color:var(--muted)}
+  body[data-hero="minimal"] .hero h1{color:var(--ink)}
+  body[data-hero="minimal"] .hero h1 .it{color:var(--accent)}
+  body[data-hero="minimal"] .hero .role{color:var(--ink)}
+  body[data-hero="minimal"] .hero-foot p{color:var(--muted)}
+  body[data-hero="minimal"] .hero-foot .right .v{color:var(--ink)}
+  body[data-hero="minimal"] .hero-foot .right .oversmall{color:var(--muted)}
+
+  /* section */
+  .sec{padding:80px 0;border-bottom:1px solid var(--ink)}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:50px;border-bottom:1px solid var(--line);padding-bottom:20px}
+  .sec-head .idx{font-family:var(--didone);font-style:italic;font-size:20px;color:var(--accent)}
+  .sec-head h2{font-family:var(--didone);font-weight:600;font-size:clamp(28px,4vw,46px);letter-spacing:.01em}
+  .sec-head .meta{margin-left:auto}
+
+  /* work */
+  .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px 50px}
+  .proj{cursor:pointer}
+  .proj:nth-child(even){margin-top:50px}
+  .proj .cover{aspect-ratio:3/4;background:repeating-linear-gradient(135deg,#eef0f4,#eef0f4 13px,#e6e8ef 13px,#e6e8ef 26px);display:grid;place-items:center;position:relative;overflow:hidden}
+  .proj .cover .ph{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);background:var(--paper);padding:6px 13px}
+  .proj .cover::after{content:"";position:absolute;inset:0;background:var(--accent);opacity:0;transition:opacity .4s}
+  .proj:hover .cover::after{opacity:.12}
+  .proj .num{font-family:var(--didone);font-style:italic;font-size:18px;margin-top:20px;color:var(--accent)}
+  .proj h3{font-family:var(--didone);font-weight:600;font-size:clamp(26px,3vw,38px);line-height:1.04;letter-spacing:.005em;margin-top:6px;transition:.25s}
+  .proj:hover h3{font-style:italic;color:var(--accent)}
+  .proj .meta-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+  .proj .cat{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .proj .yr{font-family:var(--didone);font-style:italic;font-size:16px;color:var(--muted)}
+  .proj p{color:var(--muted);font-size:15px;margin-top:14px;max-width:44ch}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+  .about-portrait{aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#eef0f4,#eef0f4 13px,#e6e8ef 13px,#e6e8ef 26px);display:grid;place-items:center;overflow:hidden}
+  .about-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 28%;display:block}
+  .about-portrait .ph{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);background:var(--paper);padding:6px 13px}
+  .about .lead{font-family:var(--didone);font-size:clamp(24px,3vw,36px);line-height:1.34;font-weight:500}
+  .about .lead .it{font-style:italic;color:var(--accent)}
+  .about-body{margin-top:24px}
+  .about-body p{color:var(--muted);margin-bottom:15px;max-width:54ch}
+
+  /* skills */
+  .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+  .skill-list .row{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-top:1px solid var(--line);font-family:var(--didone);font-size:22px}
+  .skill-list .row:last-child{border-bottom:1px solid var(--line)}
+  .skill-list .row .n{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  .skill-block .hd{margin-bottom:20px}
+
+  /* experience */
+  .exp-row{display:grid;grid-template-columns:150px 1fr auto;gap:30px;padding:24px 0;border-top:1px solid var(--line);align-items:baseline;transition:padding-left .3s}
+  .exp-row:last-child{border-bottom:1px solid var(--line)}
+  .exp-row:hover{padding-left:12px}
+  .exp-row:hover .role{color:var(--accent)}
+  .exp-row .when{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .exp-row .role{font-family:var(--didone);font-size:24px;font-weight:600;transition:color .2s}
+  .exp-row .org{color:var(--muted);font-size:14.5px;margin-top:3px}
+  .exp-row .place{font-family:var(--didone);font-style:italic;font-size:16px;color:var(--muted);text-align:right;white-space:nowrap}
+  .pub{margin-top:46px;text-align:center;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:40px 20px}
+  .pub .t{font-family:var(--didone);font-size:clamp(20px,2.6vw,28px);line-height:1.4;font-style:italic;max-width:34ch;margin:0 auto}
+  .pub .c{margin-top:16px}
+
+  /* contact */
+  .contact{padding:100px 0;text-align:center;border-bottom:1px solid var(--ink)}
+  .contact h2{font-family:var(--didone);font-weight:600;font-size:clamp(48px,11vw,150px);line-height:.96;letter-spacing:-.005em}
+  .contact h2 .it{font-style:italic;font-weight:500;color:var(--accent)}
+  .contact .links{display:flex;gap:0;justify-content:center;flex-wrap:wrap;margin-top:48px;border-top:1px solid var(--line)}
+  .contact .links a{font-family:var(--didone);font-size:19px;padding:20px 32px;border-right:1px solid var(--line);transition:.2s}
+  .contact .links a:first-child{border-left:1px solid var(--line)}
+  .contact .links a:hover{background:var(--accent);color:#fff}
+  footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:26px 0}
+
+  @media(max-width:860px){
+    .wrap{padding:0 24px}
+    nav ul{display:none}.burger{display:flex}
+    .work-grid,.about-grid,.cols-2{grid-template-columns:1fr;gap:40px}
+    .proj:nth-child(even){margin-top:0}
+    .exp-row{grid-template-columns:1fr;gap:5px}.exp-row .place{text-align:left}
+    .contact .links a{border-left:1px solid var(--line);border-bottom:1px solid var(--line)}
+  }
+  @media(max-width:680px){
+    .ach{grid-template-columns:auto 1fr;gap:18px}
+    .ach .meta{grid-column:2;text-align:left;margin-top:2px}
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: var(--bg);
-    border-bottom: 1px solid var(--rule);
-    padding: 0 2.5rem;
-    height: 52px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-
-  .nav-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 17px;
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-size: 13px; font-weight: 400;
-    color: var(--muted); text-decoration: none;
-    transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--text); }
-
-  .nav-cta {
-    font-size: 13px; font-weight: 500;
-    color: var(--text); text-decoration: none;
-    border-bottom: 1px solid var(--text);
-    padding-bottom: 1px;
-    transition: opacity .2s;
-  }
-  .nav-cta:hover { opacity: 0.5; }
-
-  /* HERO */
-  .hero {
-    padding: 140px 2.5rem 80px;
-    max-width: 960px;
-  }
-
-  .hero-label {
-    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 2.5rem;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .hero-label::before { content: ''; width: 20px; height: 1px; background: var(--muted); }
-
-  .hero-headline {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(44px, 7vw, 88px);
-    line-height: 1.05;
-    letter-spacing: -1.5px;
-    color: var(--text);
-    margin-bottom: 2rem;
-    max-width: 800px;
-  }
-  .hero-headline em { font-style: italic; color: var(--muted); }
-
-  .hero-sub {
-    font-size: 16px; line-height: 1.8;
-    color: var(--muted); max-width: 480px;
-    margin-bottom: 3rem;
-  }
-
-  .hero-links { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
-  .link-primary {
-    font-size: 14px; font-weight: 500; color: var(--text);
-    text-decoration: none; border-bottom: 1.5px solid var(--text);
-    padding-bottom: 1px; transition: opacity .2s;
-  }
-  .link-primary:hover { opacity: 0.5; }
-  .link-secondary {
-    font-size: 14px; color: var(--muted); text-decoration: none;
-    transition: color .2s;
-  }
-  .link-secondary:hover { color: var(--text); }
-
-  /* SECTIONS */
-  section {
-    border-top: 1px solid var(--rule);
-    padding: 5rem 2.5rem;
-    max-width: 960px;
-  }
-
-  .section-head {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-  }
-
-  .section-num {
-    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--muted); padding-top: 4px;
-  }
-
-  .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(28px, 4vw, 44px);
-    line-height: 1.1;
-    letter-spacing: -1px;
-    color: var(--text);
-  }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 3rem;
-  }
-
-  .about-body { font-size: 15px; line-height: 1.85; color: var(--muted); }
-  .about-body p + p { margin-top: 1.2rem; }
-  .about-body strong { color: var(--text); font-weight: 500; }
-
-  /* WORK */
-  .work-row {
-    display: grid;
-    grid-template-columns: 160px 1fr 80px;
-    gap: 3rem;
-    align-items: start;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--rule);
-    text-decoration: none;
-    transition: opacity .2s;
-    cursor: pointer;
-  }
-  .work-row:first-child { border-top: 1px solid var(--rule); }
-  .work-row:hover { opacity: 0.5; }
-
-  .work-cat { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
-  .work-title { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -.5px; color: var(--text); margin-bottom: 6px; }
-  .work-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
-  .work-arr { font-size: 18px; color: var(--muted); text-align: right; padding-top: 3px; }
-
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 3rem;
-  }
-
-  .skill-group { margin-bottom: 2rem; }
-  .skill-group:last-child { margin-bottom: 0; }
-  .skill-group-lbl {
-    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 10px;
-  }
-  .skill-list {
-    font-size: 15px; color: var(--text); line-height: 1.8;
-  }
-
-  /* EXPERIENCE */
-  .exp-row {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 3rem;
-    padding: 1.75rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .exp-row:first-child { border-top: 1px solid var(--rule); }
-
-  .exp-yr { font-size: 13px; color: var(--muted); padding-top: 2px; }
-  .exp-role { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-  .exp-co { font-size: 14px; color: var(--muted); }
-  .exp-tag {
-    display: inline-block; font-size: 10px; letter-spacing: 1px;
-    text-transform: uppercase; color: var(--muted); border: 1px solid var(--rule);
-    padding: 2px 8px; border-radius: 100px; margin-top: 6px;
-  }
-
-  /* CONTACT */
-  .contact-body {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .contact-right h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(32px,5vw,60px);
-    line-height: 1.1; letter-spacing: -1.5px;
-    color: var(--text); margin-bottom: 1.5rem;
-  }
-  .contact-right h2 em { font-style: italic; color: var(--muted); }
-
-  .contact-right p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; max-width: 420px; }
-
-  .contact-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 1.5rem 2.5rem;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 1rem;
-    max-width: none;
-  }
-  .f-l { font-size: 13px; color: var(--muted); }
-  .f-r { font-size: 13px; color: var(--muted); }
-
-  /* Fade */
-  .fu { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
-  .fu.vis { opacity: 1; transform: translateY(0); }
-
-  @media(max-width: 680px) {
-    nav { padding: 0 1.5rem; }
-    .nav-links { display: none; }
-    .hero { padding: 100px 1.5rem 60px; }
-    section { padding: 3.5rem 1.5rem; max-width: none; }
-    .section-head,
-    .about-grid,
-    .skills-grid,
-    .contact-body { grid-template-columns: 1fr; gap: 1rem; }
-    .work-row { grid-template-columns: 1fr; gap: 0.75rem; }
-    .work-arr { display: none; }
-    .exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
-    footer { padding: 1.5rem; flex-direction: column; }
-  }
+  /* ===== icons ===== */
+  .icon{width:1em;height:1em;display:inline-block;vertical-align:-.14em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  /* ===== capabilities & tools ===== */
+  .skills-grid2{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  .skills-col .hd{margin-bottom:22px}
+  .cap-list,.tool-list{display:flex;flex-direction:column}
+  .cap,.tool{display:flex;align-items:center;gap:16px;padding:15px 4px;border-top:1px solid var(--line);transition:padding .25s,background .25s}
+  .cap:last-child,.tool:last-child{border-bottom:1px solid var(--line)}
+  .cap:hover,.tool:hover{padding-left:12px}
+  .cap .ic,.tool .ic{flex:none;width:44px;height:44px;border:1px solid var(--line);display:grid;place-items:center;color:var(--accent);font-size:21px;transition:.25s}
+  .cap:hover .ic,.tool:hover .ic{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent)}
+  .cap .cn,.tool .tn{font-family:var(--didone);font-weight:600;font-size:21px;letter-spacing:.005em}
+  .tool .tn{font-weight:500;white-space:nowrap}
+  .cap .cd{font-size:13px;color:var(--muted);margin-top:2px;line-height:1.4}
+  .tool .tt{margin-left:auto;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  /* ===== achievements ===== */
+  .ach-list{border-top:1px solid var(--line);margin-top:4px}
+  .ach{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center;padding:26px 4px;border-bottom:1px solid var(--line);transition:padding .25s}
+  .ach:hover{padding-left:14px}
+  .ach .ic{flex:none;width:54px;height:54px;border:1px solid var(--ink);display:grid;place-items:center;color:var(--accent);font-size:25px;transition:.25s}
+  .ach:hover .ic{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .ach h3{font-family:var(--didone);font-weight:600;font-size:24px;letter-spacing:.005em}
+  .ach h3 .it{font-style:italic;font-weight:500;color:var(--accent)}
+  .ach .desc{color:var(--muted);font-size:14.5px;margin-top:6px;max-width:66ch}
+  .ach .desc em{font-style:italic;color:var(--ink)}
+  .ach .meta{text-align:right;white-space:nowrap}
+  .ach .meta .yr{font-family:var(--didone);font-style:italic;font-size:18px;color:var(--muted)}
+  .ach .meta .kind{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-top:6px}
+  /* project category icon */
+  .proj .cat{display:inline-flex;align-items:center;gap:8px}
+  .proj .cat .ic{font-size:15px;color:var(--accent);flex:none}
+  /* contact icons */
+  .contact .links a{display:inline-flex;align-items:center;gap:11px}
+  .contact .links a .ic{font-size:17px;color:var(--accent);transition:.2s}
+  .contact .links a:hover .ic{color:#fff}
+  @media(max-width:860px){.skills-grid2{grid-template-columns:1fr;gap:34px}}
+  /* ===== contact direct ===== */
+  .contact-direct{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 46px;margin-top:36px}
+  .contact-direct a{display:inline-flex;align-items:center;gap:13px;font-family:var(--didone);font-size:clamp(21px,2.5vw,30px);transition:.2s}
+  .contact-direct a:hover{color:var(--accent)}
+  .contact-direct a .ic{font-size:21px;color:var(--accent);flex:none}
+  .contact .links{margin-top:40px}
 </style>
 </head>
-<body>
-
-<nav>
-  <a href="/" class="nav-name">Sanket Naik</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#experience">Experience</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">Contact</a>
-</nav>
-
-<div class="hero fu">
-  <div class="hero-label">Product Designer · Bengaluru</div>
-  <h1 class="hero-headline">
-    Designing products that feel <em>inevitable.</em>
-  </h1>
-  <p class="hero-sub">
-    M.Des from IIT Delhi. Trained in engineering, refined through industrial design, now building digital products at TCS.
-  </p>
-  <div class="hero-links">
-    <a href="#work" class="link-primary">See my work</a>
-    <a href="#contact" class="link-secondary">Get in touch →</a>
+<body data-hero="block">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></symbol>
+<symbol id="i-cursor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l6 16 2.2-6.8L20 10z"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></symbol>
+<symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.5 6H15.5M7.2 8.1l3.6 7.8M16.8 8.1l-3.6 7.8"/></symbol>
+<symbol id="i-test" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="1.5"/><path d="M9 4V3.2A1.2 1.2 0 0110.2 2h3.6A1.2 1.2 0 0115 3.2V4"/><path d="M8.8 13l2.2 2.2L15.5 11"/></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16 5a2.1 2.1 0 013 3L8 19z"/><line x1="14" y1="7" x2="17" y2="10"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+<symbol id="i-frame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5"/><line x1="4" y1="9.5" x2="20" y2="9.5"/><line x1="9.5" y1="9.5" x2="9.5" y2="20"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 15.5L16 11l-9 9"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z"/><path d="M18.6 14.6l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></symbol>
+<symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 14.2L7 22l5-3 5 3-2-7.8"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c3.2 2.4 4.6 6.4 3.5 11l-3.5 3-3.5-3C7.4 8.9 8.8 4.9 12 2.5z"/><circle cx="12" cy="9.5" r="1.6"/><path d="M8.5 16c-2 .8-2.4 3.2-2.5 5 1.8-.1 4.2-.5 5-2.5"/></symbol>
+<symbol id="i-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13v14a1.5 1.5 0 001.5-1.5V8H21v9.5A2.5 2.5 0 0118.5 20H6a2 2 0 01-2-2z"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12" x2="13" y2="12"/><line x1="7" y1="15" x2="11" y2="15"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5L12 13l8.5-6.5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h3l1.8 5-2.2 1.6a12 12 0 005.8 5.8L16 18l5 1.8V21a2 2 0 01-2 2A18 18 0 013 5a2 2 0 012-2z"/></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><line x1="7.5" y1="10" x2="7.5" y2="16.5"/><circle cx="7.5" cy="7.2" r="1"/><path d="M11 16.5v-3.5a2.4 2.4 0 014.8 0v3.5"/><line x1="11" y1="16.5" x2="11" y2="10"/></symbol>
+<symbol id="i-behance" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M6.2 8.6h3a1.7 1.7 0 010 3.4h-3z"/><path d="M6.2 12h3.3a1.8 1.8 0 010 3.6H6.2z"/><line x1="14.4" y1="8.8" x2="17.8" y2="8.8"/><path d="M13.6 13.6h4.6a2.3 2.3 0 00-4.5-.5 2.3 2.3 0 004.1 1.7"/></symbol>
+<symbol id="i-cube" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6l8.5 4.7v9.4L12 21.4 3.5 16.7V7.3z"/><path d="M3.7 7.4L12 12l8.3-4.6M12 12v9.2"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5A1.5 1.5 0 016.5 3H19v15H6.5A1.5 1.5 0 005 19.5z"/><path d="M5 19.5A1.5 1.5 0 016.5 18H19"/></symbol>
+</defs></svg>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><img src="images/logo.png" class="brand-mark" alt="SN monogram">Sanket Naik</a>
+    <nav><ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#achievements">Recognition</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul></nav>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
+</header>
+<div class="drawer" id="drawer">
+  <a href="#work"><span>Work</span><span class="n">01</span></a>
+  <a href="#achievements"><span>Recognition</span><span class="n">02</span></a>
+  <a href="#about"><span>About</span><span class="n">03</span></a>
+  <a href="#experience"><span>Experience</span><span class="n">04</span></a>
+  <a href="#contact"><span>Contact</span><span class="n">05</span></a>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-head fu">
-    <div class="section-num">01 / About</div>
-    <div class="section-title">A designer shaped<br>by making things.</div>
-  </div>
-  <div class="about-grid fu">
-    <div></div>
-    <div class="about-body">
-      <p>I come from <strong>mechanical engineering and industrial design</strong> — which means I'm equally comfortable thinking about manufacturing constraints and mapping user journeys. That breadth shapes how I approach every problem.</p>
-      <p>After an <strong>M.Des from IIT Delhi</strong>, where my thesis focused on safety-first design for elderly washroom environments, I've worked across agencies, a co-founded venture, and enterprise product teams. Today I design UX systems at TCS in Bengaluru.</p>
-      <p>Originally from <strong>Goa</strong>. Interested in football, guitar, travel, and cinema when not pushing pixels.</p>
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="oversmall kicker">UI/UX Designer &amp; UX Researcher — Bengaluru, India</div>
+      <h1>Clarity, by <span class="it">design.</span></h1>
+      <div class="role">Enterprise product &amp; UX, with research at its core.</div>
+      <div class="hero-foot">
+        <p>Product &amp; UX designer with 3+ years in enterprise software — pairing M.Des research rigour from IIT Delhi with hands-on UI delivery.</p>
+        <div class="right"><div class="oversmall">Currently</div><div class="v">UI/UX Designer, TCS</div><div class="oversmall" style="margin-top:6px">Open to new roles</div></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- WORK -->
-<section id="work">
-  <div class="section-head fu">
-    <div class="section-num">02 / Work</div>
-    <div class="section-title">Selected<br>case studies.</div>
-  </div>
-  <div class="fu">
-    <div class="work-row">
-      <div class="work-cat">Product Design</div>
-      <div>
-        <div class="work-title">WiNK A/C Remote Redesign</div>
-        <div class="work-desc">Simplifying smart air conditioner controls — balancing everyday simplicity with advanced features for power users.</div>
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">01</span><h2>Selected Work</h2><span class="meta oversmall">Four Projects</span></div>
+      <div class="work-grid">
+        <article class="proj" data-slug="enterprise-platform"><div class="cover"><span class="ph">cover · 3:4</span></div><div class="num">I.</div><h3>Enterprise Platform UX</h3><div class="meta-row"><span class="cat"><svg class="icon ic"><use href="#i-cursor"/></svg>Product Design · TCS</span><span class="yr">2022—Now</span></div><p>Designing and shipping interfaces for enterprise software used across large-scale operations.</p></article>
+        <article class="proj" data-slug="accessible-sanitation"><div class="cover"><span class="ph">cover · 3:4</span></div><div class="num">II.</div><h3>Accessible Sanitation</h3><div class="meta-row"><span class="cat"><svg class="icon ic"><use href="#i-search"/></svg>UX Research</span><span class="yr">2024</span></div><p>Field research on whether India's accessible-toilet standards hold up to real-world evidence.</p></article>
+        <article class="proj" data-slug="desmania"><div class="cover"><span class="ph">cover · 3:4</span></div><div class="num">III.</div><h3>Desmania Internship</h3><div class="meta-row"><span class="cat"><svg class="icon ic"><use href="#i-cube"/></svg>Industrial Design</span><span class="yr">2021</span></div><p>Hands-on industrial design exploration during the M.Des programme at IIT Delhi.</p></article>
+        <article class="proj" data-slug="mdes-thesis" data-href="work/mdes-thesis.html"><div class="cover"><span class="ph">cover · 3:4</span></div><div class="num">IV.</div><h3>M.Des Thesis</h3><div class="meta-row"><span class="cat"><svg class="icon ic"><use href="#i-book"/></svg>Design Research · IIT-D</span><span class="yr">2022</span></div><p>Ergonomic study of preferred working heights and joint linepaths — elbow, wrist and shoulder — for Indian adults.</p></article>
       </div>
-      <div class="work-arr">↗</div>
     </div>
-    <div class="work-row">
-      <div class="work-cat">Research + Design</div>
-      <div>
-        <div class="work-title">Elderly Washroom Safety</div>
-        <div class="work-desc">M.Des thesis — ethnographic research leading to an inclusive, safety-first redesign of washroom environments for ageing users.</div>
-      </div>
-      <div class="work-arr">↗</div>
-    </div>
-    <div class="work-row" style="opacity:.4; pointer-events:none;">
-      <div class="work-cat">In progress</div>
-      <div>
-        <div class="work-title">More soon</div>
-        <div class="work-desc">Additional case studies from TCS in preparation. Reach out for a walkthrough.</div>
-      </div>
-      <div class="work-arr">—</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-head fu">
-    <div class="section-num">03 / Skills</div>
-    <div class="section-title">Toolkit.</div>
-  </div>
-  <div class="skills-grid fu">
-    <div></div>
-    <div>
-      <div class="skill-group">
-        <div class="skill-group-lbl">Design</div>
-        <div class="skill-list">Figma · Adobe XD · Prototyping · Design Systems · Interaction Design · Visual Design</div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-lbl">Research</div>
-        <div class="skill-list">User Interviews · Usability Testing · Contextual Enquiry · Information Architecture · Journey Mapping</div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-lbl">Engineering</div>
-        <div class="skill-list">SolidWorks · Industrial Design · Mechanical Engineering · DFM</div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-lbl">Emerging</div>
-        <div class="skill-list">HTML · CSS · AI Tools · Cursor · Prompt Engineering</div>
+  <section class="sec" id="achievements">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">02</span><h2>Achievements &amp; Recognition</h2><span class="meta oversmall">Selected</span></div>
+      <div class="ach-list">
+        <div class="ach">
+          <span class="ic"><svg class="icon"><use href="#i-award"/></svg></span>
+          <div>
+            <h3>Published <span class="it">Research</span></h3>
+            <div class="desc">Co-authored a peer-reviewed paper questioning whether India's accessible-toilet standards are evidence-based — <em>“Are Guidelines and Standards for Design of Accessible Toilets in India Evidence-Based?”</em>, 22nd IEA Congress, Vol. 5.</div>
+          </div>
+          <div class="meta"><div class="yr">2024</div><div class="kind">Peer-reviewed</div></div>
+        </div>
+        <div class="ach">
+          <span class="ic"><svg class="icon"><use href="#i-rocket"/></svg></span>
+          <div>
+            <h3>Co-founder · <span class="it">Thinkaprint</span></h3>
+            <div class="desc">Built a 3D-printing venture in Goa from the ground up — owning product, brand and customer experience end-to-end.</div>
+          </div>
+          <div class="meta"><div class="yr">2017—20</div><div class="kind">Entrepreneurship</div></div>
+        </div>
+        <div class="ach">
+          <span class="ic"><svg class="icon"><use href="#i-news"/></svg></span>
+          <div>
+            <h3>Featured in <span class="it">Press</span></h3>
+            <div class="desc">A working 3D printer built entirely from scrap materials, covered by <em>The Goan</em> newspaper.</div>
+          </div>
+          <div class="meta"><div class="yr">2016</div><div class="kind">Media</div></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-head fu">
-    <div class="section-num">04 / Experience</div>
-    <div class="section-title">Where I've been.</div>
-  </div>
-  <div class="fu">
-    <div class="exp-row">
-      <div class="exp-yr">2023 – Present</div>
-      <div>
-        <div class="exp-role">Product Designer</div>
-        <div class="exp-co">Tata Consultancy Services (TCS) · Bengaluru</div>
-        <span class="exp-tag">Current</span>
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">03</span><h2>About</h2></div>
+      <div class="about-grid about">
+        <div class="about-portrait"><img src="images/portrait.jpg" alt="Sanket Naik"></div>
+        <div>
+          <p class="lead">A designer who moves between <span class="it">research</span> and <span class="it">pixels</span> — shaping enterprise tools that hold up under real scrutiny.</p>
+          <div class="about-body">
+            <p>My path runs from mechanical engineering in Goa, through a master's in Industrial Design at IIT Delhi, to product and UX design at TCS. Along the way I co-founded a 3D-printing startup and published research on accessible design.</p>
+            <p>I bring the discipline of structured research and the instinct of someone who has shipped products and run a business — with a bias for clarity and evidence.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="exp-row">
-      <div class="exp-yr">2021 – 2023</div>
-      <div>
-        <div class="exp-role">M.Des — Industrial Design</div>
-        <div class="exp-co">IIT Delhi</div>
-        <span class="exp-tag">Education</span>
-      </div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-yr">2020 – 2021</div>
-      <div>
-        <div class="exp-role">UI/UX Designer</div>
-        <div class="exp-co">Desmania Design</div>
-      </div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-yr">2019 – 2020</div>
-      <div>
-        <div class="exp-role">Design Engineer</div>
-        <div class="exp-co">Pentair</div>
-      </div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-yr">2018 – 2019</div>
-      <div>
-        <div class="exp-role">Co-Founder</div>
-        <div class="exp-co">Thinkaprint</div>
-        <span class="exp-tag">Venture</span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-body fu">
-    <div class="section-num" style="padding-top:4px">05 / Contact</div>
-    <div class="contact-right">
-      <h2>Let's work<br><em>together.</em></h2>
-      <p>Open to senior product design roles, freelance projects, and conversations about craft. If what you're building sounds interesting, I'd like to hear about it.</p>
-      <div class="contact-actions">
-        <a href="mailto:sanket@example.com" class="link-primary">sanket@example.com</a>
-        <a href="https://linkedin.com/in/sanketnaik" target="_blank" class="link-secondary">LinkedIn ↗</a>
-        <a href="#" class="link-secondary">CV ↗</a>
+  <section class="sec" id="skills">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">04</span><h2>Capabilities &amp; Tools</h2><span class="meta oversmall">How I work</span></div>
+      <div class="skills-grid2">
+        <div class="skills-col">
+          <div class="oversmall hd">What I do</div>
+          <div class="cap-list">
+            <div class="cap"><span class="ic"><svg class="icon"><use href="#i-search"/></svg></span><div><div class="cn">UX Research</div><div class="cd">Interviews, synthesis, evidence</div></div></div>
+            <div class="cap"><span class="ic"><svg class="icon"><use href="#i-cursor"/></svg></span><div><div class="cn">Product Design</div><div class="cd">End-to-end, ship-ready interfaces</div></div></div>
+            <div class="cap"><span class="ic"><svg class="icon"><use href="#i-grid"/></svg></span><div><div class="cn">Design Systems</div><div class="cd">Consistent components at scale</div></div></div>
+            <div class="cap"><span class="ic"><svg class="icon"><use href="#i-flow"/></svg></span><div><div class="cn">Prototyping</div><div class="cd">Hi-fi flows &amp; interaction states</div></div></div>
+            <div class="cap"><span class="ic"><svg class="icon"><use href="#i-test"/></svg></span><div><div class="cn">Usability Testing</div><div class="cd">Validating with real users</div></div></div>
+          </div>
+        </div>
+        <div class="skills-col">
+          <div class="oversmall hd">Tools</div>
+          <div class="tool-list">
+            <div class="tool"><span class="ic"><svg class="icon"><use href="#i-layers"/></svg></span><span class="tn">Figma</span><span class="tt">Primary</span></div>
+            <div class="tool"><span class="ic"><svg class="icon"><use href="#i-frame"/></svg></span><span class="tn">Adobe XD</span><span class="tt">UI</span></div>
+            <div class="tool"><span class="ic"><svg class="icon"><use href="#i-pen"/></svg></span><span class="tn">Illustrator</span><span class="tt">Vector</span></div>
+            <div class="tool"><span class="ic"><svg class="icon"><use href="#i-image"/></svg></span><span class="tn">Photoshop</span><span class="tt">Raster</span></div>
+            <div class="tool"><span class="ic"><svg class="icon"><use href="#i-spark"/></svg></span><span class="tn">AI in Design</span><span class="tt">Workflow</span></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="f-l">Sanket Subhash Naik · Product Designer</div>
-  <div class="f-r">Goa-born · Bengaluru-based · 2025</div>
-</footer>
+  <section class="sec" id="experience">
+    <div class="wrap">
+      <div class="sec-head"><span class="idx">05</span><h2>Experience &amp; Education</h2></div>
+      <div>
+        <div class="exp-row"><div class="when">2022 — Now</div><div><div class="role">UI/UX Designer</div><div class="org">TCS</div></div><div class="place">Bengaluru</div></div>
+        <div class="exp-row"><div class="when">2020 — 2022</div><div><div class="role">M.Des, Industrial Design</div><div class="org">IIT Delhi · CGPA 8.1</div></div><div class="place">New Delhi</div></div>
+        <div class="exp-row"><div class="when">2021</div><div><div class="role">Industrial Design Intern</div><div class="org">Desmania Design</div></div><div class="place">Manesar</div></div>
+        <div class="exp-row"><div class="when">2017 — 2020</div><div><div class="role">Co-founder</div><div class="org">Thinkaprint</div></div><div class="place">Goa</div></div>
+        <div class="exp-row"><div class="when">2015</div><div><div class="role">Apprentice Engineer</div><div class="org">Pentair Water Pvt Ltd</div></div><div class="place">Goa</div></div>
+        <div class="exp-row"><div class="when">2010 — 2014</div><div><div class="role">B.E., Mechanical Engineering</div><div class="org">Goa College of Engineering</div></div><div class="place">Goa</div></div>
+      </div>
+    </div>
+  </section>
 
-<script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) setTimeout(() => e.target.classList.add('vis'), i * 60);
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="oversmall" style="margin-bottom:24px">Let's work together</div>
+      <h2>Say <span class="it">hello.</span></h2>
+      <div class="contact-direct">
+        <a href="/cdn-cgi/l/email-protection#1162707f7a74657c757462232151767c70787d3f727e7c"><svg class="icon ic"><use href="#i-mail"/></svg><span class="__cf_email__" data-cfemail="186b7976737d6c757c7d6b2a28587f75797174367b7775">[email&#160;protected]</span></a>
+        <a href="tel:+917709787457"><svg class="icon ic"><use href="#i-phone"/></svg>+91 77097 87457</a>
+      </div>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/sanket-naik-81902997" target="_blank" rel="noopener"><svg class="icon ic"><use href="#i-linkedin"/></svg>LinkedIn</a>
+        <a href="https://www.behance.net/snktnaik41" target="_blank" rel="noopener"><svg class="icon ic"><use href="#i-behance"/></svg>Behance</a>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><footer><span class="oversmall">Sanket Subhash Naik</span><span class="oversmall">© 2026 · Bengaluru, India</span></footer></div>
+</main>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // mobile drawer
+  (function(){
+    const burger=document.querySelector('.burger'), drawer=document.getElementById('drawer');
+    burger.addEventListener('click',()=>document.body.classList.toggle('menu-open'));
+    drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('menu-open')));
+  })();
+  // clickable project cards
+  (function(){
+    document.querySelectorAll('.work-grid .proj').forEach(p=>{
+      p.setAttribute('role','link');p.tabIndex=0;
+      const go=()=>{ location.href = p.dataset.href || ('work/case-study.html#'+(p.dataset.slug||'')); };
+      p.addEventListener('click',go);
+      p.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
     });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+  })();
 </script>
 
+<!-- Tweaks island -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+  const TWEAK_DEFAULTS = { accent:"#1b39c4", hero:"block" };
+  function TweaksApp(){
+    const [t,setTweak] = useTweaks(TWEAK_DEFAULTS);
+    React.useEffect(()=>{
+      document.documentElement.style.setProperty('--accent', t.accent);
+      document.body.setAttribute('data-hero', t.hero);
+    },[t.accent,t.hero]);
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Accent colour" />
+        <TweakColor label="Accent" value={t.accent}
+          options={['#1b39c4','#9e2b25','#0f6b4f','#1f3aa6','#6d2a6b','#0c0e1a']}
+          onChange={(v)=>setTweak('accent', v)} />
+        <TweakSection label="Hero treatment" />
+        <TweakRadio label="Style" value={t.hero}
+          options={['block','minimal']}
+          onChange={(v)=>setTweak('hero', v)} />
+      </TweaksPanel>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
+</script>
 </body>
 </html>
